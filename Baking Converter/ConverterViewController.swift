@@ -8,18 +8,23 @@
 
 import UIKit
 
-class ConverterViewController: UIViewController {
+protocol ConverterScene {
+    
+}
 
+protocol ConverterSceneDelegate {
+    func numberOfIngredients() -> Int
+    func nameForIngredientAtIndex(_ index: Int) -> String?
+}
+
+class ConverterViewController: UIViewController, ConverterScene {
+
+    var delegate: ConverterSceneDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        delegate = ConverterController()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
@@ -29,17 +34,12 @@ extension ConverterViewController: UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 2
+        return delegate.numberOfIngredients()
     }
 }
 
 extension ConverterViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch row {
-        case 0:
-            return "All-Purpose Flour"
-        default:
-            return "Cake Flour"
-        }
+        return delegate.nameForIngredientAtIndex(row)
     }
 }
