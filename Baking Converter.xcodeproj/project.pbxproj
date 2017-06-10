@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		89DE1E8F1EEC63960072F9DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE1E8E1EEC63960072F9DC /* AppDelegate.swift */; };
+		89DE1E911EEC63960072F9DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE1E901EEC63960072F9DC /* ViewController.swift */; };
+		89DE1E941EEC63960072F9DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89DE1E921EEC63960072F9DC /* Main.storyboard */; };
+		89DE1E961EEC63960072F9DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89DE1E951EEC63960072F9DC /* Assets.xcassets */; };
+		89DE1E991EEC63960072F9DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89DE1E971EEC63960072F9DC /* LaunchScreen.storyboard */; };
+		89DE1EA41EEC63970072F9DC /* Baking_ConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE1EA31EEC63970072F9DC /* Baking_ConverterTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		89DE1EA01EEC63970072F9DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89DE1E831EEC63960072F9DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89DE1E8A1EEC63960072F9DC;
+			remoteInfo = "Baking Converter";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		89DE1E8B1EEC63960072F9DC /* Baking Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Baking Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89DE1E8E1EEC63960072F9DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		89DE1E901EEC63960072F9DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		89DE1E931EEC63960072F9DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		89DE1E951EEC63960072F9DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		89DE1E981EEC63960072F9DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		89DE1E9A1EEC63960072F9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89DE1E9F1EEC63970072F9DC /* Baking ConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baking ConverterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89DE1EA31EEC63970072F9DC /* Baking_ConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baking_ConverterTests.swift; sourceTree = "<group>"; };
+		89DE1EA51EEC63970072F9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		89DE1E881EEC63960072F9DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89DE1E9C1EEC63970072F9DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		89DE1E821EEC63960072F9DC = {
+			isa = PBXGroup;
+			children = (
+				89DE1E8D1EEC63960072F9DC /* Baking Converter */,
+				89DE1EA21EEC63970072F9DC /* Baking ConverterTests */,
+				89DE1E8C1EEC63960072F9DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		89DE1E8C1EEC63960072F9DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				89DE1E8B1EEC63960072F9DC /* Baking Converter.app */,
+				89DE1E9F1EEC63970072F9DC /* Baking ConverterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		89DE1E8D1EEC63960072F9DC /* Baking Converter */ = {
+			isa = PBXGroup;
+			children = (
+				89DE1E8E1EEC63960072F9DC /* AppDelegate.swift */,
+				89DE1E901EEC63960072F9DC /* ViewController.swift */,
+				89DE1E921EEC63960072F9DC /* Main.storyboard */,
+				89DE1E951EEC63960072F9DC /* Assets.xcassets */,
+				89DE1E971EEC63960072F9DC /* LaunchScreen.storyboard */,
+				89DE1E9A1EEC63960072F9DC /* Info.plist */,
+			);
+			path = "Baking Converter";
+			sourceTree = "<group>";
+		};
+		89DE1EA21EEC63970072F9DC /* Baking ConverterTests */ = {
+			isa = PBXGroup;
+			children = (
+				89DE1EA31EEC63970072F9DC /* Baking_ConverterTests.swift */,
+				89DE1EA51EEC63970072F9DC /* Info.plist */,
+			);
+			path = "Baking ConverterTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		89DE1E8A1EEC63960072F9DC /* Baking Converter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89DE1EA81EEC63970072F9DC /* Build configuration list for PBXNativeTarget "Baking Converter" */;
+			buildPhases = (
+				89DE1E871EEC63960072F9DC /* Sources */,
+				89DE1E881EEC63960072F9DC /* Frameworks */,
+				89DE1E891EEC63960072F9DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Baking Converter";
+			productName = "Baking Converter";
+			productReference = 89DE1E8B1EEC63960072F9DC /* Baking Converter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		89DE1E9E1EEC63970072F9DC /* Baking ConverterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89DE1EAB1EEC63970072F9DC /* Build configuration list for PBXNativeTarget "Baking ConverterTests" */;
+			buildPhases = (
+				89DE1E9B1EEC63970072F9DC /* Sources */,
+				89DE1E9C1EEC63970072F9DC /* Frameworks */,
+				89DE1E9D1EEC63970072F9DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				89DE1EA11EEC63970072F9DC /* PBXTargetDependency */,
+			);
+			name = "Baking ConverterTests";
+			productName = "Baking ConverterTests";
+			productReference = 89DE1E9F1EEC63970072F9DC /* Baking ConverterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		89DE1E831EEC63960072F9DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Michael Johnson";
+				TargetAttributes = {
+					89DE1E8A1EEC63960072F9DC = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = G366SNANE6;
+						ProvisioningStyle = Automatic;
+					};
+					89DE1E9E1EEC63970072F9DC = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = G366SNANE6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 89DE1E8A1EEC63960072F9DC;
+					};
+				};
+			};
+			buildConfigurationList = 89DE1E861EEC63960072F9DC /* Build configuration list for PBXProject "Baking Converter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 89DE1E821EEC63960072F9DC;
+			productRefGroup = 89DE1E8C1EEC63960072F9DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				89DE1E8A1EEC63960072F9DC /* Baking Converter */,
+				89DE1E9E1EEC63970072F9DC /* Baking ConverterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		89DE1E891EEC63960072F9DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89DE1E991EEC63960072F9DC /* LaunchScreen.storyboard in Resources */,
+				89DE1E961EEC63960072F9DC /* Assets.xcassets in Resources */,
+				89DE1E941EEC63960072F9DC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89DE1E9D1EEC63970072F9DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		89DE1E871EEC63960072F9DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89DE1E911EEC63960072F9DC /* ViewController.swift in Sources */,
+				89DE1E8F1EEC63960072F9DC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89DE1E9B1EEC63970072F9DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89DE1EA41EEC63970072F9DC /* Baking_ConverterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		89DE1EA11EEC63970072F9DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 89DE1E8A1EEC63960072F9DC /* Baking Converter */;
+			targetProxy = 89DE1EA01EEC63970072F9DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		89DE1E921EEC63960072F9DC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				89DE1E931EEC63960072F9DC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		89DE1E971EEC63960072F9DC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				89DE1E981EEC63960072F9DC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		89DE1EA61EEC63970072F9DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		89DE1EA71EEC63970072F9DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		89DE1EA91EEC63970072F9DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G366SNANE6;
+				INFOPLIST_FILE = "Baking Converter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.notthatmj.Baking-Converter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		89DE1EAA1EEC63970072F9DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G366SNANE6;
+				INFOPLIST_FILE = "Baking Converter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.notthatmj.Baking-Converter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		89DE1EAC1EEC63970072F9DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = G366SNANE6;
+				INFOPLIST_FILE = "Baking ConverterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.notthatmj.Baking-ConverterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Baking Converter.app/Baking Converter";
+			};
+			name = Debug;
+		};
+		89DE1EAD1EEC63970072F9DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = G366SNANE6;
+				INFOPLIST_FILE = "Baking ConverterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.notthatmj.Baking-ConverterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Baking Converter.app/Baking Converter";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		89DE1E861EEC63960072F9DC /* Build configuration list for PBXProject "Baking Converter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89DE1EA61EEC63970072F9DC /* Debug */,
+				89DE1EA71EEC63970072F9DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89DE1EA81EEC63970072F9DC /* Build configuration list for PBXNativeTarget "Baking Converter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89DE1EA91EEC63970072F9DC /* Debug */,
+				89DE1EAA1EEC63970072F9DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		89DE1EAB1EEC63970072F9DC /* Build configuration list for PBXNativeTarget "Baking ConverterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89DE1EAC1EEC63970072F9DC /* Debug */,
+				89DE1EAD1EEC63970072F9DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 89DE1E831EEC63960072F9DC /* Project object */;
+}
