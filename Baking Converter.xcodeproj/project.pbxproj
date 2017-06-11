@@ -14,7 +14,6 @@
 		89DE1E941EEC63960072F9DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89DE1E921EEC63960072F9DC /* Main.storyboard */; };
 		89DE1E961EEC63960072F9DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89DE1E951EEC63960072F9DC /* Assets.xcassets */; };
 		89DE1E991EEC63960072F9DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89DE1E971EEC63960072F9DC /* LaunchScreen.storyboard */; };
-		89DE1EA41EEC63970072F9DC /* Baking_ConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE1EA31EEC63970072F9DC /* Baking_ConverterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +37,6 @@
 		89DE1E981EEC63960072F9DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89DE1E9A1EEC63960072F9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89DE1E9F1EEC63970072F9DC /* Baking ConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baking ConverterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		89DE1EA31EEC63970072F9DC /* Baking_ConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baking_ConverterTests.swift; sourceTree = "<group>"; };
 		89DE1EA51EEC63970072F9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +93,6 @@
 		89DE1EA21EEC63970072F9DC /* Baking ConverterTests */ = {
 			isa = PBXGroup;
 			children = (
-				89DE1EA31EEC63970072F9DC /* Baking_ConverterTests.swift */,
 				892057EE1EEC777F00518F5B /* ConverterControllerTests.swift */,
 				89DE1EA51EEC63970072F9DC /* Info.plist */,
 			);
@@ -218,7 +215,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				892057EF1EEC777F00518F5B /* ConverterControllerTests.swift in Sources */,
-				89DE1EA41EEC63970072F9DC /* Baking_ConverterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
