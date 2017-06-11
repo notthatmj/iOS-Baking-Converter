@@ -15,12 +15,14 @@ class ConverterController: ConverterSceneDelegate {
                                "Sugar"]
 
     private var inputUnitsOptions = [ "Cups", "Milliliters" ]
+    private var outputUnitsOptions = [ "Grams", "Ounces" ]
     
     init() {}
     
-    init(ingredients: [String], inputUnitsOptions: [String]) {
+    init(ingredients: [String], inputUnitsOptions: [String], outputUnitsOptions: [String]) {
         self.ingredients = ingredients
         self.inputUnitsOptions = inputUnitsOptions
+        self.outputUnitsOptions = outputUnitsOptions
     }
     
     func numberOfIngredients() -> Int {
@@ -44,4 +46,16 @@ class ConverterController: ConverterSceneDelegate {
         }
         return inputUnitsOptions[index]
     }
+    
+    func numberOfOutputUnitsOptions() -> Int {
+        return outputUnitsOptions.count
+    }
+    
+    func nameForOutputUnitsOptionsAtIndex(_ index: Int) -> String? {
+        guard case 0 ..< outputUnitsOptions.count = index else {
+            return nil
+        }
+        return outputUnitsOptions[index]
+    }
+    
 }

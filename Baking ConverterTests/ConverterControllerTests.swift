@@ -18,13 +18,14 @@ class ConverterControllerTests: XCTestCase {
                                       "Spam",
                                       "Tomato Sauce"]
 
-    let testInputUnitOptions = [ "Cups", "Milliliters", "Zorkmids" ]
-    
+    let testInputUnitsOptions = [ "Cups", "Milliliters", "Zorkmids" ]
+    let testOutputUnitsOptions = [ "Grams", "Ounces", "Fizzbots"]
     
     override func setUp() {
         
         SUT = ConverterController(ingredients: testIngredients,
-                                  inputUnitsOptions: testInputUnitOptions)
+                                  inputUnitsOptions: testInputUnitsOptions,
+                                  outputUnitsOptions: testOutputUnitsOptions )
     }
     
     func testNameForIngredientAtIndex() {
@@ -54,12 +55,12 @@ class ConverterControllerTests: XCTestCase {
         XCTAssertNil(returnValue)
     }
 
-    func testNumberOfInputUnitOptions() {
+    func testNumberOfInputsUnitOptions() {
         // Run
         let returnValue = SUT.numberOfInputUnitsOptions()
         
         // Assert
-        XCTAssertEqual(returnValue, testInputUnitOptions.count)
+        XCTAssertEqual(returnValue, testInputUnitsOptions.count)
     }
     
     func testNameForInputUnitsOptionsAtIndex() {
@@ -71,13 +72,50 @@ class ConverterControllerTests: XCTestCase {
         
         // Assert
         for index in 0 ..< SUT.numberOfInputUnitsOptions() {
-            XCTAssertEqual(inputUnitsOptions[index], testInputUnitOptions[index])
+            XCTAssertEqual(inputUnitsOptions[index], testInputUnitsOptions[index])
         }
     }
     
     func testNameForInputUnitsOptionsAtIndexReturnsNilForNegativeIndex() {
         // Run
         let returnValue = SUT.nameForInputUnitOptionAtIndex(-1)
+        
+        // Assert
+        XCTAssertNil(returnValue)
+    }
+    
+    func testNumberOfOutputUnitsOptions() {
+        // Run
+        let returnValue = SUT.numberOfOutputUnitsOptions()
+        
+        // Assert
+        XCTAssertEqual(returnValue, testOutputUnitsOptions.count)
+    }
+    
+    func testNameForOutputUnitsOptionsAtIndex() {
+        // Run
+        var outputUnitsOptions: [String?] = []
+        for index in 0 ..< SUT.numberOfOutputUnitsOptions() {
+            outputUnitsOptions.append(SUT.nameForOutputUnitsOptionsAtIndex(index))
+        }
+        
+        // Assert
+        for index in 0 ..< SUT.numberOfOutputUnitsOptions() {
+            XCTAssertEqual(outputUnitsOptions[index], testOutputUnitsOptions[index])
+        }
+    }
+    
+    func testNameForOutputUnitsOptionsAtIndexReturnsNilForNegativeIndex() {
+        // Run
+        let returnValue = SUT.nameForOutputUnitsOptionsAtIndex(-1)
+        
+        // Assert
+        XCTAssertNil(returnValue)
+    }
+    
+    func testNameForOutputUnitsOptionsAtIndexReturnsNilForOutOfBoundsIndex() {
+        // Run
+        let returnValue = SUT.nameForOutputUnitsOptionsAtIndex(testOutputUnitsOptions.count)
         
         // Assert
         XCTAssertNil(returnValue)

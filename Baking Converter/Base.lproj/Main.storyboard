@@ -54,12 +54,17 @@
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lUc-hV-UVv">
                                 <rect key="frame" x="165" y="323" width="204" height="92"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="15V-re-Nch"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="be4-li-nAg"/>
+                                </connections>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="0.73986677550000002" green="1" blue="0.73399531760000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="inputUnitsPicker" destination="ui4-kr-z59" id="l3s-L4-erZ"/>
+                        <outlet property="outputUnitsPicker" destination="lUc-hV-UVv" id="nWO-bL-5fN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
