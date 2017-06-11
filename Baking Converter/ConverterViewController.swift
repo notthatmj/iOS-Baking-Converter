@@ -15,10 +15,13 @@ protocol ConverterScene {
 protocol ConverterSceneDelegate {
     func numberOfIngredients() -> Int
     func nameForIngredientAtIndex(_ index: Int) -> String?
+    func numberOfInputUnitsOptions() -> Int
+    func nameForInputUnitOptionAtIndex(_ index: Int) -> String?
 }
 
 class ConverterViewController: UIViewController, ConverterScene {
 
+    @IBOutlet weak var inputUnitsPicker: UIPickerView!
     var delegate: ConverterSceneDelegate!
     
     override func viewDidLoad() {
@@ -34,12 +37,25 @@ extension ConverterViewController: UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return delegate.numberOfIngredients()
+        switch pickerView {
+        case inputUnitsPicker:
+            return delegate.numberOfInputUnitsOptions()
+        default:
+            return delegate.numberOfIngredients()
+        }
+//        return delegate.numberOfIngredients()
     }
 }
 
 extension ConverterViewController: UIPickerViewDelegate {
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return delegate.nameForIngredientAtIndex(row)
+        switch pickerView {
+        case inputUnitsPicker:
+            return delegate.nameForInputUnitOptionAtIndex(row)
+        default:
+            return delegate.nameForIngredientAtIndex(row)
+        }
     }
+    
 }
