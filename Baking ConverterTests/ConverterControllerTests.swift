@@ -9,6 +9,11 @@
 import XCTest
 @testable import Baking_Converter
 
+class FakeConverterScene: ConverterScene {
+    var inputText: String? = nil
+    var outputText: String? = nil
+}
+
 class ConverterControllerTests: XCTestCase {
 
     var SUT: ConverterController!
@@ -120,4 +125,41 @@ class ConverterControllerTests: XCTestCase {
         // Assert
         XCTAssertNil(returnValue)
     }
+    
+    func testInputValueWasChangedForScene1() {
+        // Setup
+        let fakeScene = FakeConverterScene()
+        fakeScene.inputText = "1"
+        
+        // Run
+        SUT.converterSceneInputTextDidChange(fakeScene)
+        
+        // Assert
+        XCTAssertEqual(fakeScene.outputText, "120.0")
+    }
+
+    func testInputValueWasChangedForScene2() {
+        // Setup
+        let fakeScene = FakeConverterScene()
+        fakeScene.inputText = "2"
+        
+        // Run
+        SUT.converterSceneInputTextDidChange(fakeScene)
+        
+        // Assert
+        XCTAssertEqual(fakeScene.outputText, "240.0")
+    }
+    
+    func testInputValueWasChangedForSceneWithBadInput() {
+        // Setup
+        let fakeScene = FakeConverterScene()
+        fakeScene.inputText = "2.."
+        
+        // Run
+        SUT.converterSceneInputTextDidChange(fakeScene)
+        
+        // Assert
+        XCTAssertEqual(fakeScene.outputText, "0")
+    }
+
 }

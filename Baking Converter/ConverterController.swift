@@ -58,4 +58,12 @@ class ConverterController: ConverterSceneDelegate {
         return outputUnitsOptions[index]
     }
     
+    func converterSceneInputTextDidChange(_ scene: ConverterScene) {
+        guard let inputText = scene.inputText, let quantity = Double(inputText) else {
+            scene.outputText = "0"
+            return
+        }
+        scene.outputText = String(quantity * 120.0)
+    }
+    
 }

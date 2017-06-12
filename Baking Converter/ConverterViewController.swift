@@ -1,4 +1,3 @@
-
 //
 //  ConverterViewController.swift
 //  Baking Converter
@@ -8,24 +7,28 @@
 //
 
 import UIKit
+//import Foundation
 
-protocol ConverterScene {
-    
+protocol ConverterScene: AnyObject {
+    var inputText: String? { get }
+    var outputText: String? {get set}
 }
 
 protocol ConverterSceneDelegate {
     func numberOfIngredients() -> Int
     func nameForIngredientAtIndex(_ index: Int) -> String?
     func numberOfInputUnitsOptions() -> Int
-    func nameForInputUnitOptionAtIndex(_ index: Int) -> String?
+    func nameForInputUnitOptionAtIndex(_ : Int) -> String?
     func numberOfOutputUnitsOptions() -> Int
-    func nameForOutputUnitsOptionsAtIndex(_ index: Int) -> String?
+    func nameForOutputUnitsOptionsAtIndex(_ : Int) -> String?
+    func converterSceneInputTextDidChange(_ : ConverterScene)
 }
 
-class ConverterViewController: UIViewController, ConverterScene {
+class ConverterViewController: UIViewController {
 
     @IBOutlet weak var inputUnitsPicker: UIPickerView!
     @IBOutlet weak var outputUnitsPicker: UIPickerView!
+    @IBOutlet weak var inputField: UITextField!
     @IBOutlet weak var resultsLabel: UILabel!
     
     var delegate: ConverterSceneDelegate!
@@ -35,6 +38,27 @@ class ConverterViewController: UIViewController, ConverterScene {
         resultsLabel.layer.cornerRadius = 8.0
         resultsLabel.layer.masksToBounds = true
         delegate = ConverterController()
+    }
+
+    @IBAction func textFieldEditingChangedAction(_ sender: Any) {
+        delegate.converterSceneInputTextDidChange(self)
+    }
+    
+}
+
+extension ConverterViewController: ConverterScene {
+
+    var inputText: String? {
+        return inputField.text
+    }
+    
+    var outputText: String? {
+        get {
+            return resultsLabel.text
+        }
+        set {
+            resultsLabel.text = newValue
+        }
     }
 
 }
