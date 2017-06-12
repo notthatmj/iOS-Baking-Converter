@@ -63,7 +63,14 @@ class ConverterController: ConverterSceneDelegate {
             scene.outputText = "0"
             return
         }
-        scene.outputText = String(quantity * 120.0)
+        var outputQuantity: Double
+        switch scene.selectedIngredientIndex {
+        case 2:
+            outputQuantity = 198 * quantity
+        default:
+            outputQuantity = 120 * quantity
+        }
+        scene.outputText = String(outputQuantity)
     }
     
 }

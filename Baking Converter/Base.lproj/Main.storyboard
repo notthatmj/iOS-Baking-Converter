@@ -67,6 +67,7 @@
                         <color key="backgroundColor" red="0.73986677550000002" green="1" blue="0.73399531760000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="ingredientsPicker" destination="iMr-iW-5j5" id="tOc-Ft-kQA"/>
                         <outlet property="inputField" destination="M6v-gC-W6b" id="hW3-bJ-wyH"/>
                         <outlet property="inputUnitsPicker" destination="ui4-kr-z59" id="l3s-L4-erZ"/>
                         <outlet property="outputUnitsPicker" destination="lUc-hV-UVv" id="nWO-bL-5fN"/>

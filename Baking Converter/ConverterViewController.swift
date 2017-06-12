@@ -12,6 +12,7 @@ import UIKit
 protocol ConverterScene: AnyObject {
     var inputText: String? { get }
     var outputText: String? {get set}
+    var selectedIngredientIndex: Int { get }
 }
 
 protocol ConverterSceneDelegate {
@@ -26,6 +27,7 @@ protocol ConverterSceneDelegate {
 
 class ConverterViewController: UIViewController {
 
+    @IBOutlet weak var ingredientsPicker: UIPickerView!
     @IBOutlet weak var inputUnitsPicker: UIPickerView!
     @IBOutlet weak var outputUnitsPicker: UIPickerView!
     @IBOutlet weak var inputField: UITextField!
@@ -61,6 +63,9 @@ extension ConverterViewController: ConverterScene {
         }
     }
 
+    var selectedIngredientIndex: Int {
+        return ingredientsPicker.selectedRow(inComponent: 0)
+    }
 }
 
 extension ConverterViewController: UIPickerViewDataSource {

@@ -12,6 +12,7 @@ import XCTest
 class FakeConverterScene: ConverterScene {
     var inputText: String? = nil
     var outputText: String? = nil
+    var selectedIngredientIndex: Int = 0
 }
 
 class ConverterControllerTests: XCTestCase {
@@ -20,7 +21,7 @@ class ConverterControllerTests: XCTestCase {
 
     let testIngredients: [String] = ["All-Purpose Flour",
                                       "Cake Flour",
-                                      "Spam",
+                                      "Sugar",
                                       "Tomato Sauce"]
 
     let testInputUnitsOptions = [ "Cups", "Milliliters", "Zorkmids" ]
@@ -149,7 +150,33 @@ class ConverterControllerTests: XCTestCase {
         // Assert
         XCTAssertEqual(fakeScene.outputText, "240.0")
     }
-    
+
+    func testInputValueWasChangedForScene3() {
+        // Setup
+        let fakeScene = FakeConverterScene()
+        fakeScene.inputText = "1"
+        fakeScene.selectedIngredientIndex = 2
+        
+        // Run
+        SUT.converterSceneInputTextDidChange(fakeScene)
+        
+        // Assert
+        XCTAssertEqual(fakeScene.outputText, "198.0")
+    }
+
+    func testInputValueWasChangedForScene4() {
+        // Setup
+        let fakeScene = FakeConverterScene()
+        fakeScene.inputText = "3"
+        fakeScene.selectedIngredientIndex = 2
+        
+        // Run
+        SUT.converterSceneInputTextDidChange(fakeScene)
+        
+        // Assert
+        XCTAssertEqual(fakeScene.outputText, "594.0")
+    }
+
     func testInputValueWasChangedForSceneWithBadInput() {
         // Setup
         let fakeScene = FakeConverterScene()
