@@ -1,3 +1,4 @@
+
 //
 //  ConverterViewController.swift
 //  Baking Converter
@@ -25,11 +26,14 @@ class ConverterViewController: UIViewController, ConverterScene {
 
     @IBOutlet weak var inputUnitsPicker: UIPickerView!
     @IBOutlet weak var outputUnitsPicker: UIPickerView!
+    @IBOutlet weak var resultsLabel: UILabel!
     
     var delegate: ConverterSceneDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        resultsLabel.layer.cornerRadius = 8.0
+        resultsLabel.layer.masksToBounds = true
         delegate = ConverterController()
     }
 
