@@ -73,4 +73,18 @@ class ConverterController: ConverterSceneDelegate {
         scene.outputText = String(outputQuantity)
     }
     
+    func converterScene(_ scene: ConverterScene, didSelectIngredientAtIndex selectedIndex: Int) {
+        guard let inputText = scene.inputText, let quantity = Double(inputText) else {
+            scene.outputText = "0"
+            return
+        }
+        var outputQuantity: Double
+        switch selectedIndex {
+        case 2:
+            outputQuantity = 198 * quantity
+        default:
+            outputQuantity = 120 * quantity
+        }
+        scene.outputText = String(outputQuantity)
+    }
 }

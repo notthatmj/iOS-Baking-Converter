@@ -23,6 +23,7 @@ protocol ConverterSceneDelegate {
     func numberOfOutputUnitsOptions() -> Int
     func nameForOutputUnitsOptionsAtIndex(_ : Int) -> String?
     func converterSceneInputTextDidChange(_ : ConverterScene)
+    func converterScene(_ : ConverterScene, didSelectIngredientAtIndex: Int)
 }
 
 class ConverterViewController: UIViewController {
@@ -98,4 +99,14 @@ extension ConverterViewController: UIPickerViewDelegate {
         }
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView {
+        case ingredientsPicker:
+            delegate.converterScene(self, didSelectIngredientAtIndex: row)
+            break
+        default:
+            break
+        }
+        return
+    }
 }

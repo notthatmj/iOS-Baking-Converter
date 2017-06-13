@@ -13,6 +13,9 @@ class FakeConverterScene: ConverterScene {
     var inputText: String? = nil
     var outputText: String? = nil
     var selectedIngredientIndex: Int = 0
+    func converterScene(_ : ConverterScene, didSelectIngredientAtIndex: Int) {
+        
+    }
 }
 
 class ConverterControllerTests: XCTestCase {
@@ -188,5 +191,17 @@ class ConverterControllerTests: XCTestCase {
         // Assert
         XCTAssertEqual(fakeScene.outputText, "0")
     }
-
+    
+    func testSceneDidSelectIngredientAtIndex() {
+        // Setup
+        let fakeScene = FakeConverterScene()
+        fakeScene.inputText = "1"
+        fakeScene.selectedIngredientIndex = 2
+        
+        // Run
+        SUT.converterScene(fakeScene, didSelectIngredientAtIndex:2)
+        
+        // Assert
+        XCTAssertEqual(fakeScene.outputText ,"198.0")
+    }
 }
