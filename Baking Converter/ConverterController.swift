@@ -8,18 +8,28 @@
 
 import Foundation
 
+struct Ingredient {
+    var name: String
+    var gramsPerCup: Double
+}
+
 class ConverterController: ConverterSceneDelegate {
     
-    private var ingredients = ["All-Purpose Flour",
-                               "Cake Flour",
-                               "Sugar"]
+//    private var ingredients = ["All-Purpose Flour",
+//                               "Cake Flour",
+//                               "Sugar"]
+//    private var ingredients: [Ingredient]
 
+    private var ingredients = [Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
+                               Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
+                               Ingredient(name: "Sugar", gramsPerCup: 198.0)]
+    
     private var inputUnitsOptions = [ "Cups", "Milliliters" ]
     private var outputUnitsOptions = [ "Grams", "Ounces" ]
     
     init() {}
     
-    init(ingredients: [String], inputUnitsOptions: [String], outputUnitsOptions: [String]) {
+    init(ingredients: [Ingredient], inputUnitsOptions: [String], outputUnitsOptions: [String]) {
         self.ingredients = ingredients
         self.inputUnitsOptions = inputUnitsOptions
         self.outputUnitsOptions = outputUnitsOptions
@@ -33,7 +43,7 @@ class ConverterController: ConverterSceneDelegate {
         guard case 0 ..< ingredients.count = index else {
             return nil
         }
-        return ingredients[index]
+        return ingredients[index].name
     }
     
     func numberOfInputUnitsOptions() -> Int {
@@ -57,23 +67,17 @@ class ConverterController: ConverterSceneDelegate {
         }
         return outputUnitsOptions[index]
     }
-    
+
     func converterSceneInputTextDidChange(_ scene: ConverterScene) {
-        guard let inputText = scene.inputText, let quantity = Double(inputText) else {
-            scene.outputText = "0"
-            return
-        }
-        var outputQuantity: Double
-        switch scene.selectedIngredientIndex {
-        case 2:
-            outputQuantity = 198 * quantity
-        default:
-            outputQuantity = 120 * quantity
-        }
-        scene.outputText = String(outputQuantity)
+        updateOutputTextForScene(scene)
     }
     
     func converterScene(_ scene: ConverterScene, didSelectIngredientAtIndex selectedIndex: Int) {
+        updateOutputTextForScene(scene)
+    }
+
+    private func updateOutputTextForScene(_ scene: ConverterScene) {
+        let selectedIndex = scene.selectedIngredientIndex
         guard let inputText = scene.inputText, let quantity = Double(inputText) else {
             scene.outputText = "0"
             return
@@ -87,4 +91,5 @@ class ConverterController: ConverterSceneDelegate {
         }
         scene.outputText = String(outputQuantity)
     }
+    
 }

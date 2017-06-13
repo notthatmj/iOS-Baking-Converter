@@ -22,11 +22,11 @@ class ConverterControllerTests: XCTestCase {
 
     var SUT: ConverterController!
 
-    let testIngredients: [String] = ["All-Purpose Flour",
-                                      "Cake Flour",
-                                      "Sugar",
-                                      "Tomato Sauce"]
-
+    let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
+                                          Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
+                                          Ingredient(name: "Sugar", gramsPerCup: 198.0),
+                                          Ingredient(name: "Soylent", gramsPerCup: 321.0)]
+    
     let testInputUnitsOptions = [ "Cups", "Milliliters", "Zorkmids" ]
     let testOutputUnitsOptions = [ "Grams", "Ounces", "Fizzbots"]
     
@@ -46,7 +46,7 @@ class ConverterControllerTests: XCTestCase {
         
         // Assert
         for index in 0 ..< SUT.numberOfIngredients() {
-            XCTAssertEqual(ingredientNames[index], testIngredients[index])
+            XCTAssertEqual(ingredientNames[index], testIngredients[index].name)
         }
     }
 
