@@ -15,11 +15,6 @@ struct Ingredient {
 
 class ConverterController: ConverterSceneDelegate {
     
-//    private var ingredients = ["All-Purpose Flour",
-//                               "Cake Flour",
-//                               "Sugar"]
-//    private var ingredients: [Ingredient]
-
     private var ingredients = [Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
                                Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
                                Ingredient(name: "Sugar", gramsPerCup: 198.0)]
@@ -77,18 +72,13 @@ class ConverterController: ConverterSceneDelegate {
     }
 
     private func updateOutputTextForScene(_ scene: ConverterScene) {
-        let selectedIndex = scene.selectedIngredientIndex
         guard let inputText = scene.inputText, let quantity = Double(inputText) else {
             scene.outputText = "0"
             return
         }
-        var outputQuantity: Double
-        switch selectedIndex {
-        case 2:
-            outputQuantity = 198 * quantity
-        default:
-            outputQuantity = 120 * quantity
-        }
+        let selectedIngredient = ingredients[scene.selectedIngredientIndex]
+        let gramsPerCup = selectedIngredient.gramsPerCup
+        let outputQuantity = gramsPerCup * quantity
         scene.outputText = String(outputQuantity)
     }
     
