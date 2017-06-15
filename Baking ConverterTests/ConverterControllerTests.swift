@@ -210,7 +210,7 @@ class ConverterControllerTests: XCTestCase {
         XCTAssertEqual(fakeScene.outputText ,"198.0")
     }
     
-    func test_Convert650mlCakeFlourToOunces() {
+    func test_Convert650mlCakeFlourToGrams() {
         // Setup
         let fakeScene = FakeConverterScene()
         fakeScene.inputText = "650"
