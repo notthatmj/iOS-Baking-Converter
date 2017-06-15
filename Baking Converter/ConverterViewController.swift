@@ -7,12 +7,14 @@
 //
 
 import UIKit
-//import Foundation
+import Foundation
 
 protocol ConverterScene: AnyObject {
     var inputText: String? { get }
     var outputText: String? {get set}
     var selectedIngredientIndex: Int { get }
+    var selectedInputUnitsIndex: Int { get }
+    var selectedOutputUnitsIndex: Int { get }
 }
 
 protocol ConverterSceneDelegate {
@@ -23,6 +25,7 @@ protocol ConverterSceneDelegate {
     func numberOfOutputUnitsOptions() -> Int
     func nameForOutputUnitsOptionsAtIndex(_ : Int) -> String?
     func converterSceneInputTextDidChange(_ : ConverterScene)
+    func converterSceneInputUnitsDidChange(_ : ConverterScene)
     func converterScene(_ : ConverterScene, didSelectIngredientAtIndex: Int)
 }
 
@@ -67,6 +70,15 @@ extension ConverterViewController: ConverterScene {
     var selectedIngredientIndex: Int {
         return ingredientsPicker.selectedRow(inComponent: 0)
     }
+    
+    var selectedInputUnitsIndex: Int {
+        return inputUnitsPicker.selectedRow(inComponent: 0)
+    }
+    
+    var selectedOutputUnitsIndex: Int {
+        return outputUnitsPicker.selectedRow(inComponent: 0)
+    }
+    
 }
 
 extension ConverterViewController: UIPickerViewDataSource {
@@ -104,6 +116,8 @@ extension ConverterViewController: UIPickerViewDelegate {
         case ingredientsPicker:
             delegate.converterScene(self, didSelectIngredientAtIndex: row)
             break
+        case inputUnitsPicker:
+            delegate.converterSceneInputUnitsDidChange(self)
         default:
             break
         }
