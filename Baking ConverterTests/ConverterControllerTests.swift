@@ -224,5 +224,19 @@ class ConverterControllerTests: XCTestCase {
         // Assert
         XCTAssertEqual(fakeScene.outputText, "329.7")
     }
-
+    
+    func test_Convert650mlCakeFlourToOunces() {
+        // Setup
+        let fakeScene = FakeConverterScene()
+        fakeScene.inputText = "650"
+        fakeScene.selectedIngredientIndex = 0
+        fakeScene.selectedInputUnitsIndex = 1
+        fakeScene.selectedOutputUnitsIndex = 1
+        
+        // Run
+        SUT.converterSceneOutputUnitsDidChange(fakeScene)
+        
+        // Assert
+        XCTAssertEqual(fakeScene.outputText, "11.6")
+    }
 }

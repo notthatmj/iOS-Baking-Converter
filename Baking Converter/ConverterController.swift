@@ -32,19 +32,21 @@ class ConverterController: ConverterSceneDelegate {
     private var inputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
                                       VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
     
-    private var outputUnitsOptions = [ "Grams", "Ounces" ]
+//    private var outputUnitsOptions = [ "Grams", "Ounces" ]
+    private var outputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0),
+                                       MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
     
     init() {}
     
-    init(ingredients: [Ingredient], inputUnitsOptions: [VolumeUnit], outputUnitsOptions: [String]) {
+    init(ingredients: [Ingredient], inputUnitsOptions: [VolumeUnit], outputUnitsOptions: [MassUnit]) {
         self.ingredients = ingredients
         self.inputUnitsOptions = inputUnitsOptions
         self.outputUnitsOptions = outputUnitsOptions
     }
     
-    init(ingredients: [Ingredient], inputUnitsOptions: [VolumeUnit], outputUnitsOptions: [MassUnit]) {
-        
-    }
+//    init(ingredients: [Ingredient], inputUnitsOptions: [VolumeUnit], outputUnitsOptions: [MassUnit]) {
+//        
+//    }
     
     func numberOfIngredients() -> Int {
         return ingredients.count
@@ -76,7 +78,7 @@ class ConverterController: ConverterSceneDelegate {
         guard case 0 ..< outputUnitsOptions.count = index else {
             return nil
         }
-        return outputUnitsOptions[index]
+        return outputUnitsOptions[index].name
     }
 
     func converterSceneInputTextDidChange(_ scene: ConverterScene) {
@@ -84,6 +86,10 @@ class ConverterController: ConverterSceneDelegate {
     }
     
     func converterSceneInputUnitsDidChange(_ scene: ConverterScene) {
+        updateOutputTextForScene(scene)
+    }
+    
+    func converterSceneOutputUnitsDidChange(_ scene: ConverterScene) {
         updateOutputTextForScene(scene)
     }
     
@@ -99,8 +105,11 @@ class ConverterController: ConverterSceneDelegate {
         }
         let selectedIngredient = ingredients[scene.selectedIngredientIndex]
         let selectedInputUnits = inputUnitsOptions[scene.selectedInputUnitsIndex]
+        let selectedOuputUnits = outputUnitsOptions[scene.selectedOutputUnitsIndex]
+
         let grams = quantity * ( 1.0 / selectedInputUnits.unitsPerCup ) * selectedIngredient.gramsPerCup
-        let outputQuantity = grams
+//        let outputQuantity = grams
+        let outputQuantity = grams * selectedOuputUnits.unitsPerGram
         scene.outputText = String(format: "%.1f", outputQuantity)
     }
     

@@ -26,6 +26,7 @@ protocol ConverterSceneDelegate {
     func nameForOutputUnitsOptionsAtIndex(_ : Int) -> String?
     func converterSceneInputTextDidChange(_ : ConverterScene)
     func converterSceneInputUnitsDidChange(_ : ConverterScene)
+    func converterSceneOutputUnitsDidChange(_ : ConverterScene)
     func converterScene(_ : ConverterScene, didSelectIngredientAtIndex: Int)
 }
 
@@ -118,6 +119,8 @@ extension ConverterViewController: UIPickerViewDelegate {
             break
         case inputUnitsPicker:
             delegate.converterSceneInputUnitsDidChange(self)
+        case outputUnitsPicker:
+            delegate.converterSceneOutputUnitsDidChange(self)
         default:
             break
         }
