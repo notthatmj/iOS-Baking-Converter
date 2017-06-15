@@ -31,8 +31,9 @@ class ConverterControllerTests: XCTestCase {
     
     let testInputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
                                   VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
-
-    let testOutputUnitsOptions = [ "Grams", "Ounces", "Fizzbots"]
+    
+    let testOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1),
+                                   MassUnit(name: "Ounces", unitsPerGram: 0.035274)]
     
     override func setUp() {
         
@@ -107,14 +108,14 @@ class ConverterControllerTests: XCTestCase {
     
     func testNameForOutputUnitsOptionsAtIndex() {
         // Run
-        var outputUnitsOptions: [String?] = []
+        var outputUnitsOptionsNames: [String?] = []
         for index in 0 ..< SUT.numberOfOutputUnitsOptions() {
-            outputUnitsOptions.append(SUT.nameForOutputUnitsOptionsAtIndex(index))
+            outputUnitsOptionsNames.append(SUT.nameForOutputUnitsOptionsAtIndex(index))
         }
         
         // Assert
         for index in 0 ..< SUT.numberOfOutputUnitsOptions() {
-            XCTAssertEqual(outputUnitsOptions[index], testOutputUnitsOptions[index])
+            XCTAssertEqual(outputUnitsOptionsNames[index], testOutputUnitsOptions[index].name)
         }
     }
     
@@ -209,29 +210,6 @@ class ConverterControllerTests: XCTestCase {
         XCTAssertEqual(fakeScene.outputText ,"198.0")
     }
     
-}
-
-class ConverterControllerTests2: XCTestCase {
-    
-    var SUT: ConverterController!
-    
-    let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
-                                          Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
-                                          Ingredient(name: "Sugar", gramsPerCup: 198.0),
-                                          Ingredient(name: "Soylent", gramsPerCup: 321.0)]
-    
-    let testInputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
-                                  VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
-
-    let testOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1),
-                                   MassUnit(name: "Ounces", unitsPerGram: 0.035274)]
-    override func setUp() {
-        SUT = ConverterController(ingredients: testIngredients,
-                                  inputUnitsOptions: testInputUnitsOptions,
-                                  outputUnitsOptions: testOutputUnitsOptions )
-
-    }
-
     func test_Convert650mlCakeFlourToOunces() {
         // Setup
         let fakeScene = FakeConverterScene()
@@ -239,8 +217,8 @@ class ConverterControllerTests2: XCTestCase {
         fakeScene.selectedIngredientIndex = 0
         fakeScene.selectedInputUnitsIndex = 1
         fakeScene.selectedOutputUnitsIndex = 0
-
-        // Run 
+        
+        // Run
         SUT.converterSceneInputUnitsDidChange(fakeScene)
         
         // Assert
@@ -248,4 +226,3 @@ class ConverterControllerTests2: XCTestCase {
     }
 
 }
-
