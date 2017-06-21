@@ -62,7 +62,7 @@ class ConverterControllerTests: XCTestCase {
         XCTAssertNil(returnValue)
     }
 
-    func testNameForIngredientsAtIndexReturnsNilForNegativeIndex() {
+    func testNameForIngredientsAtIndex_ReturnsNilForNegativeIndex() {
         // Run
         let returnValue = SUT.nameForIngredientAtIndex(testIngredients.count)
         
@@ -90,7 +90,7 @@ class ConverterControllerTests: XCTestCase {
         }
     }
     
-    func testNameForInputUnitsOptionsAtIndexReturnsNilForNegativeIndex() {
+    func testNameForInputUnitsOptionsAtIndex_ReturnsNilForNegativeIndex() {
         // Run
         let returnValue = SUT.nameForInputUnitOptionAtIndex(-1)
         
@@ -119,7 +119,7 @@ class ConverterControllerTests: XCTestCase {
         }
     }
     
-    func testNameForOutputUnitsOptionsAtIndexReturnsNilForNegativeIndex() {
+    func testNameForOutputUnitsOptionsAtIndex_ReturnsNilForNegativeIndex() {
         // Run
         let returnValue = SUT.nameForOutputUnitsOptionsAtIndex(-1)
         
@@ -127,7 +127,7 @@ class ConverterControllerTests: XCTestCase {
         XCTAssertNil(returnValue)
     }
     
-    func testNameForOutputUnitsOptionsAtIndexReturnsNilForOutOfBoundsIndex() {
+    func testNameForOutputUnitsOptionsAtIndex_ReturnsNilForOutOfBoundsIndex() {
         // Run
         let returnValue = SUT.nameForOutputUnitsOptionsAtIndex(testOutputUnitsOptions.count)
         
