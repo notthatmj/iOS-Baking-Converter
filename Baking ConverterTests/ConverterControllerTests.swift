@@ -69,7 +69,7 @@ class ConverterController_DataSourceMethods_Tests: XCTestCase {
         XCTAssertNil(returnValue)
     }
 
-    func testNumberOfInputsUnitOptions() {
+    func testNumberOfInputUnitsOptions() {
         // Run
         let returnValue = SUT.numberOfInputUnitsOptions()
         
@@ -137,30 +137,67 @@ class ConverterController_DataSourceMethods_Tests: XCTestCase {
 
 }
 
-class ConverterController_DataChangedMethods_Tests: XCTestCase {
+class ConverterController_DelegateMethodsUpdateOutput_Tests: XCTestCase {
     
     var SUT: ConverterController!
+    let fakeScene = FakeConverterScene()
     
     override func setUp() {
         
         SUT = ConverterController(ingredients: testIngredients,
                                   inputUnitsOptions: testInputUnitsOptions,
                                   outputUnitsOptions: testOutputUnitsOptions )
+        fakeScene.inputText = "1"
     }
     
-    func testInputValueWasChangedForScene1() {
-        // Setup
-        let fakeScene = FakeConverterScene()
-        fakeScene.inputText = "1"
-        
+    private func AssertThatOutputTextWasUpdated(file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(fakeScene.outputText, "120.0", file: file, line: line)
+    }
+    
+    func testConverterSceneInputTextDidChange() {
         // Run
         SUT.converterSceneInputTextDidChange(fakeScene)
         
         // Assert
-        XCTAssertEqual(fakeScene.outputText, "120.0")
+        AssertThatOutputTextWasUpdated()
     }
     
-    func testInputValueWasChangedForScene2() {
+    func testConverterSceneDidSelectIngredientAtIndex() {
+        // Run
+        SUT.converterScene(fakeScene, didSelectIngredientAtIndex: 0)
+        
+        // Assert
+        AssertThatOutputTextWasUpdated()
+    }
+    
+    func testInputUnitsDidChange() {
+        // Run
+        SUT.converterSceneInputUnitsDidChange(fakeScene)
+        
+        // Assert
+        AssertThatOutputTextWasUpdated()
+    }
+    
+    func testConverterSceneOutputUnitsDidChange() {
+        // Run
+        SUT.converterSceneOutputUnitsDidChange(fakeScene)
+        
+        // Assert
+        AssertThatOutputTextWasUpdated()
+    }
+}
+
+class ConverterController_DataChangedMethodsOutputCorrectValues_Tests: XCTestCase {
+    
+    var SUT: ConverterController!
+    
+    override func setUp() {
+        SUT = ConverterController(ingredients: testIngredients,
+                                  inputUnitsOptions: testInputUnitsOptions,
+                                  outputUnitsOptions: testOutputUnitsOptions )
+    }
+    
+    func testConvert2CupsOfFlourToGrams() {
         // Setup
         let fakeScene = FakeConverterScene()
         fakeScene.inputText = "2"
@@ -172,20 +209,20 @@ class ConverterController_DataChangedMethods_Tests: XCTestCase {
         XCTAssertEqual(fakeScene.outputText, "240.0")
     }
     
-    func testInputValueWasChangedForScene3() {
+    func testConvert1CupOfSugarToGrams() {
         // Setup
         let fakeScene = FakeConverterScene()
         fakeScene.inputText = "1"
         fakeScene.selectedIngredientIndex = 2
         
         // Run
-        SUT.converterSceneInputTextDidChange(fakeScene)
+        SUT.converterScene(fakeScene, didSelectIngredientAtIndex: 2)
         
         // Assert
         XCTAssertEqual(fakeScene.outputText, "198.0")
     }
     
-    func testInputValueWasChangedForScene4() {
+    func testConvert3CupsOfSugarToGrams() {
         // Setup
         let fakeScene = FakeConverterScene()
         fakeScene.inputText = "3"
@@ -197,8 +234,8 @@ class ConverterController_DataChangedMethods_Tests: XCTestCase {
         // Assert
         XCTAssertEqual(fakeScene.outputText, "594.0")
     }
-    
-    func testInputValueWasChangedForSceneWithBadInput() {
+
+    func testConvertBadInputText() {
         // Setup
         let fakeScene = FakeConverterScene()
         fakeScene.inputText = "2.."
@@ -210,26 +247,11 @@ class ConverterController_DataChangedMethods_Tests: XCTestCase {
         XCTAssertEqual(fakeScene.outputText, "0")
     }
     
-    func testSceneDidSelectIngredientAtIndex() {
-        // Setup
-        let fakeScene = FakeConverterScene()
-        fakeScene.inputText = "1"
-        fakeScene.selectedIngredientIndex = 2
-        
-        // Run
-        SUT.converterScene(fakeScene, didSelectIngredientAtIndex:2)
-        
-        // Assert
-        XCTAssertEqual(fakeScene.outputText ,"198.0")
-    }
-    
-    func test_Convert650mlCakeFlourToGrams() {
+    func testConvert650mlCakeFlourToGrams() {
         // Setup
         let fakeScene = FakeConverterScene()
         fakeScene.inputText = "650"
-        fakeScene.selectedIngredientIndex = 0
         fakeScene.selectedInputUnitsIndex = 1
-        fakeScene.selectedOutputUnitsIndex = 0
         
         // Run
         SUT.converterSceneInputUnitsDidChange(fakeScene)
@@ -242,7 +264,6 @@ class ConverterController_DataChangedMethods_Tests: XCTestCase {
         // Setup
         let fakeScene = FakeConverterScene()
         fakeScene.inputText = "650"
-        fakeScene.selectedIngredientIndex = 0
         fakeScene.selectedInputUnitsIndex = 1
         fakeScene.selectedOutputUnitsIndex = 1
         
