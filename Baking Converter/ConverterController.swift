@@ -32,7 +32,6 @@ class ConverterController: ConverterSceneDelegate {
     private var inputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
                                       VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
     
-//    private var outputUnitsOptions = [ "Grams", "Ounces" ]
     private var outputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0),
                                        MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
     
@@ -43,10 +42,6 @@ class ConverterController: ConverterSceneDelegate {
         self.inputUnitsOptions = inputUnitsOptions
         self.outputUnitsOptions = outputUnitsOptions
     }
-    
-//    init(ingredients: [Ingredient], inputUnitsOptions: [VolumeUnit], outputUnitsOptions: [MassUnit]) {
-//        
-//    }
     
     func numberOfIngredients() -> Int {
         return ingredients.count
@@ -108,7 +103,6 @@ class ConverterController: ConverterSceneDelegate {
         let selectedOuputUnits = outputUnitsOptions[scene.selectedOutputUnitsIndex]
 
         let grams = quantity * ( 1.0 / selectedInputUnits.unitsPerCup ) * selectedIngredient.gramsPerCup
-//        let outputQuantity = grams
         let outputQuantity = grams * selectedOuputUnits.unitsPerGram
         scene.outputText = String(format: "%.1f", outputQuantity)
     }

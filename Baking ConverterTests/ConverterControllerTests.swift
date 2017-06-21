@@ -55,7 +55,7 @@ class ConverterControllerTests: XCTestCase {
         }
     }
 
-    func testNameForIngredientsAtIndexReturnsNilForOutOfBoundsIndex() {
+    func testNameForIngredientsAtIndex_ReturnsNilForOutOfBoundsIndex() {
         // Run
         let returnValue = SUT.nameForIngredientAtIndex(testIngredients.count)
         
