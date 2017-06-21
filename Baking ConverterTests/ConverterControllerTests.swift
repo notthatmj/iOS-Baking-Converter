@@ -20,7 +20,7 @@ class FakeConverterScene: ConverterScene {
     }
 }
 
-class ConverterControllerTests: XCTestCase {
+class ConverterController_DataSourceMethods_Tests: XCTestCase {
 
     var SUT: ConverterController!
 
@@ -134,6 +134,30 @@ class ConverterControllerTests: XCTestCase {
         // Assert
         XCTAssertNil(returnValue)
     }
+
+}
+
+class ConverterController_DataChangedMethods_Tests: XCTestCase {
+    
+    var SUT: ConverterController!
+    
+    let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
+                                          Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
+                                          Ingredient(name: "Sugar", gramsPerCup: 198.0),
+                                          Ingredient(name: "Soylent", gramsPerCup: 321.0)]
+    
+    let testInputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
+                                  VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
+    
+    let testOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1),
+                                   MassUnit(name: "Ounces", unitsPerGram: 0.035274)]
+    
+    override func setUp() {
+        
+        SUT = ConverterController(ingredients: testIngredients,
+                                  inputUnitsOptions: testInputUnitsOptions,
+                                  outputUnitsOptions: testOutputUnitsOptions )
+    }
     
     func testInputValueWasChangedForScene1() {
         // Setup
@@ -146,7 +170,7 @@ class ConverterControllerTests: XCTestCase {
         // Assert
         XCTAssertEqual(fakeScene.outputText, "120.0")
     }
-
+    
     func testInputValueWasChangedForScene2() {
         // Setup
         let fakeScene = FakeConverterScene()
@@ -158,7 +182,7 @@ class ConverterControllerTests: XCTestCase {
         // Assert
         XCTAssertEqual(fakeScene.outputText, "240.0")
     }
-
+    
     func testInputValueWasChangedForScene3() {
         // Setup
         let fakeScene = FakeConverterScene()
@@ -171,7 +195,7 @@ class ConverterControllerTests: XCTestCase {
         // Assert
         XCTAssertEqual(fakeScene.outputText, "198.0")
     }
-
+    
     func testInputValueWasChangedForScene4() {
         // Setup
         let fakeScene = FakeConverterScene()
@@ -184,7 +208,7 @@ class ConverterControllerTests: XCTestCase {
         // Assert
         XCTAssertEqual(fakeScene.outputText, "594.0")
     }
-
+    
     func testInputValueWasChangedForSceneWithBadInput() {
         // Setup
         let fakeScene = FakeConverterScene()
