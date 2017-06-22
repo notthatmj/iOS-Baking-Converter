@@ -187,7 +187,7 @@ class ConverterController_DelegateMethodsUpdateOutput_Tests: XCTestCase {
     }
 }
 
-class ConverterController_DataChangedMethodsOutputCorrectValues_Tests: XCTestCase {
+class ConverterController_OutputValues_Tests: XCTestCase {
     
     var SUT: ConverterController!
     
