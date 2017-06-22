@@ -17,13 +17,16 @@ protocol ConverterScene: AnyObject {
     var selectedOutputUnitsIndex: Int { get }
 }
 
-protocol ConverterSceneDelegate {
+protocol ConverterSceneDataSource {
     func numberOfIngredients() -> Int
     func nameForIngredientAtIndex(_ index: Int) -> String?
     func numberOfInputUnitsOptions() -> Int
     func nameForInputUnitOptionAtIndex(_ : Int) -> String?
     func numberOfOutputUnitsOptions() -> Int
     func nameForOutputUnitsOptionsAtIndex(_ : Int) -> String?
+}
+
+protocol ConverterSceneDelegate {
     func converterSceneInputTextDidChange(_ : ConverterScene)
     func converterSceneInputUnitsDidChange(_ : ConverterScene)
     func converterSceneOutputUnitsDidChange(_ : ConverterScene)
@@ -39,12 +42,15 @@ class ConverterViewController: UIViewController {
     @IBOutlet weak var resultsLabel: UILabel!
     
     var delegate: ConverterSceneDelegate!
+    var dataSource: ConverterSceneDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         resultsLabel.layer.cornerRadius = 8.0
         resultsLabel.layer.masksToBounds = true
-        delegate = ConverterController()
+        let controller = ConverterController()
+        delegate = controller
+        dataSource = controller
     }
 
     @IBAction func textFieldEditingChangedAction(_ sender: Any) {
@@ -90,11 +96,11 @@ extension ConverterViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
         case inputUnitsPicker:
-            return delegate.numberOfInputUnitsOptions()
+            return dataSource.numberOfInputUnitsOptions()
         case outputUnitsPicker:
-            return delegate.numberOfOutputUnitsOptions()
+            return dataSource.numberOfOutputUnitsOptions()
         default:
-            return delegate.numberOfIngredients()
+            return dataSource.numberOfIngredients()
         }
     }
 }
@@ -104,11 +110,11 @@ extension ConverterViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
         case inputUnitsPicker:
-            return delegate.nameForInputUnitOptionAtIndex(row)
+            return dataSource.nameForInputUnitOptionAtIndex(row)
         case outputUnitsPicker:
-            return delegate.nameForOutputUnitsOptionsAtIndex(row)
+            return dataSource.nameForOutputUnitsOptionsAtIndex(row)
         default:
-            return delegate.nameForIngredientAtIndex(row)
+            return dataSource.nameForIngredientAtIndex(row)
         }
     }
     

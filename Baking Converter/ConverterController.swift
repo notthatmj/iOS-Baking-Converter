@@ -23,7 +23,7 @@ struct MassUnit {
     var unitsPerGram: Double
 }
 
-class ConverterController: ConverterSceneDelegate {
+class ConverterController: ConverterSceneDelegate, ConverterSceneDataSource {
     
     private var ingredients = [Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
                                Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
