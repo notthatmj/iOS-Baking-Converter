@@ -92,18 +92,24 @@ class ConverterController: ConverterSceneDelegate, ConverterSceneDataSource {
         updateOutputTextForScene(scene)
     }
 
+    private func convert(_ quantity: Double, _ inUnit: VolumeUnit, of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
+        let grams = quantity * ( 1.0 / inUnit.unitsPerCup ) * ingredient.gramsPerCup
+        let outputQuantity = grams * outUnit.unitsPerGram
+        return outputQuantity
+    }
+    
     private func updateOutputTextForScene(_ scene: ConverterScene) {
         guard let inputText = scene.inputText,
             let quantity = Double(inputText) else {
             scene.outputText = "0"
             return
         }
+        
         let selectedIngredient = ingredients[scene.selectedIngredientIndex]
         let selectedInputUnits = inputUnitsOptions[scene.selectedInputUnitsIndex]
         let selectedOuputUnits = outputUnitsOptions[scene.selectedOutputUnitsIndex]
 
-        let grams = quantity * ( 1.0 / selectedInputUnits.unitsPerCup ) * selectedIngredient.gramsPerCup
-        let outputQuantity = grams * selectedOuputUnits.unitsPerGram
+        let outputQuantity = convert(quantity, selectedInputUnits, of: selectedIngredient, to: selectedOuputUnits)
         scene.outputText = String(format: "%.1f", outputQuantity)
     }
     
