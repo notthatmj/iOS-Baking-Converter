@@ -8,72 +8,49 @@
 
 import Foundation
 
-struct Ingredient {
-    var name: String
-    var gramsPerCup: Double
-}
-
-struct VolumeUnit {
-    var name: String
-    var unitsPerCup: Double
-}
-
-struct MassUnit {
-    var name: String
-    var unitsPerGram: Double
-}
-
 class ConverterController: ConverterSceneDelegate, ConverterSceneDataSource {
     
-    private var ingredients = [Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
-                               Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
-                               Ingredient(name: "Sugar", gramsPerCup: 198.0)]
-    
-    private var inputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
-                                      VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
-    
-    private var outputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0),
-                                       MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
+    private var model = Model();
     
     init() {}
     
     init(ingredients: [Ingredient], inputUnitsOptions: [VolumeUnit], outputUnitsOptions: [MassUnit]) {
-        self.ingredients = ingredients
-        self.inputUnitsOptions = inputUnitsOptions
-        self.outputUnitsOptions = outputUnitsOptions
+        self.model = Model(ingredients: ingredients,
+                           inputUnitsOptions: inputUnitsOptions,
+                           outputUnitsOptions: outputUnitsOptions )
     }
     
     func numberOfIngredients() -> Int {
-        return ingredients.count
+        return model.ingredients.count
     }
     
     func nameForIngredientAtIndex(_ index: Int) -> String? {
-        guard case 0 ..< ingredients.count = index else {
+        guard case 0 ..< model.ingredients.count = index else {
             return nil
         }
-        return ingredients[index].name
+        return model.ingredients[index].name
     }
     
     func numberOfInputUnitsOptions() -> Int {
-        return inputUnitsOptions.count
+        return model.inputUnitsOptions.count
     }
     
     func nameForInputUnitOptionAtIndex(_ index: Int) -> String? {
-        guard case 0 ..< inputUnitsOptions.count = index  else {
+        guard case 0 ..< model.inputUnitsOptions.count = index  else {
             return nil
         }
-        return inputUnitsOptions[index].name
+        return model.inputUnitsOptions[index].name
     }
     
     func numberOfOutputUnitsOptions() -> Int {
-        return outputUnitsOptions.count
+        return model.outputUnitsOptions.count
     }
     
     func nameForOutputUnitsOptionsAtIndex(_ index: Int) -> String? {
-        guard case 0 ..< outputUnitsOptions.count = index else {
+        guard case 0 ..< model.outputUnitsOptions.count = index else {
             return nil
         }
-        return outputUnitsOptions[index].name
+        return model.outputUnitsOptions[index].name
     }
 
     func converterSceneInputTextDidChange(_ scene: ConverterScene) {
@@ -91,12 +68,6 @@ class ConverterController: ConverterSceneDelegate, ConverterSceneDataSource {
     func converterScene(_ scene: ConverterScene, didSelectIngredientAtIndex selectedIndex: Int) {
         updateOutputTextForScene(scene)
     }
-
-    private func convert(_ quantity: Double, _ inUnit: VolumeUnit, of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
-        let grams = quantity * ( 1.0 / inUnit.unitsPerCup ) * ingredient.gramsPerCup
-        let outputQuantity = grams * outUnit.unitsPerGram
-        return outputQuantity
-    }
     
     private func updateOutputTextForScene(_ scene: ConverterScene) {
         guard let inputText = scene.inputText,
@@ -105,11 +76,11 @@ class ConverterController: ConverterSceneDelegate, ConverterSceneDataSource {
             return
         }
         
-        let selectedIngredient = ingredients[scene.selectedIngredientIndex]
-        let selectedInputUnits = inputUnitsOptions[scene.selectedInputUnitsIndex]
-        let selectedOuputUnits = outputUnitsOptions[scene.selectedOutputUnitsIndex]
+        let selectedIngredient = model.ingredients[scene.selectedIngredientIndex]
+        let selectedInputUnits = model.inputUnitsOptions[scene.selectedInputUnitsIndex]
+        let selectedOuputUnits = model.outputUnitsOptions[scene.selectedOutputUnitsIndex]
 
-        let outputQuantity = convert(quantity, selectedInputUnits, of: selectedIngredient, to: selectedOuputUnits)
+        let outputQuantity = model.convert(quantity, selectedInputUnits, of: selectedIngredient, to: selectedOuputUnits)
         scene.outputText = String(format: "%.1f", outputQuantity)
     }
     
