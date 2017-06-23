@@ -65,10 +65,10 @@ class ConverterController: ConverterSceneDelegate, ConverterSceneDataSource {
         updateOutputTextForScene(scene)
     }
     
-    func converterScene(_ scene: ConverterScene, didSelectIngredientAtIndex selectedIndex: Int) {
+    func converterSceneIngredientDidChange(_ scene: ConverterScene) {
         updateOutputTextForScene(scene)
     }
-    
+
     private func updateOutputTextForScene(_ scene: ConverterScene) {
         guard let inputText = scene.inputText,
             let quantity = Double(inputText) else {

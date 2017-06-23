@@ -164,7 +164,7 @@ class ConverterController_DelegateMethodsUpdateOutput_Tests: XCTestCase {
     
     func testConverterSceneDidSelectIngredientAtIndex() {
         // Run
-        SUT.converterScene(fakeScene, didSelectIngredientAtIndex: 0)
+        SUT.converterSceneIngredientDidChange(fakeScene);
         
         // Assert
         AssertThatOutputTextWasUpdated()
@@ -216,7 +216,7 @@ class ConverterController_OutputValues_Tests: XCTestCase {
         fakeScene.selectedIngredientIndex = 2
         
         // Run
-        SUT.converterScene(fakeScene, didSelectIngredientAtIndex: 2)
+        SUT.converterSceneIngredientDidChange(fakeScene)
         
         // Assert
         XCTAssertEqual(fakeScene.outputText, "198.0")
