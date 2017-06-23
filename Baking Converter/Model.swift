@@ -23,16 +23,32 @@ struct MassUnit {
     var unitsPerGram: Double
 }
 
-struct Model {
+fileprivate let defaultIngredients = [Ingredient(name: "Baking Powder", gramsPerCup: 192.0),
+                                      Ingredient(name: "Baking Soda", gramsPerCup: 288.0),
+                                      Ingredient(name: "Butter", gramsPerCup: 226),
+                                      Ingredient(name: "Flour, All-Purpose", gramsPerCup: 120.0),
+                                      Ingredient(name: "Flour, Bread", gramsPerCup: 120.0),
+                                      Ingredient(name: "Flour, Cake", gramsPerCup: 120.0),
+                                      Ingredient(name: "Flour, Durum", gramsPerCup: 124.0),
+                                      Ingredient(name: "Flour, Pastry", gramsPerCup: 113.0),
+                                      Ingredient(name: "Sugar, Granulated White", gramsPerCup: 198.0),
+                                      Ingredient(name: "Sugar, Brown (packed)", gramsPerCup: 213.0),
+                                      Ingredient(name: "Whole-wheat Flour", gramsPerCup: 113.0)]
+
+fileprivate let defaultInputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
+                                             VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
+
+fileprivate let defaultOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0),
+                                              MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
+
+class Model {
 
     let ingredients: [Ingredient]
     let inputUnitsOptions: [VolumeUnit]
     let outputUnitsOptions: [MassUnit]
     
     init() {
-        self.ingredients = [Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
-                            Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
-                            Ingredient(name: "Sugar", gramsPerCup: 198.0)]
+        self.ingredients = defaultIngredients
         self.inputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
                                    VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
         self.outputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0),
