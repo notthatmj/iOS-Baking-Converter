@@ -26,11 +26,10 @@ struct VolumeUnit: BakingUnit {
 struct MassUnit: BakingUnit {
     var name: String
     var unitsPerGram: Double
-    var unitsPerCup: Double = 0
+    var unitsPerCup: Double
     
     init(name: String, unitsPerGram: Double) {
-        self.name = name;
-        self.unitsPerGram = unitsPerGram;
+        self.init(name: name, unitsPerGram: unitsPerGram, unitsPerCup: 0);
     }
 
     init(name: String, unitsPerGram: Double, unitsPerCup: Double) {
@@ -64,22 +63,14 @@ class Model {
     let inputUnitsOptions: [BakingUnit]
     let outputUnitsOptions: [MassUnit]
     
-    init() {
-        self.ingredients = defaultIngredients
-        self.inputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
-                                   VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
-        self.outputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0),
-                                    MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
+    convenience init() {
+        self.init(ingredients: defaultIngredients,
+                  inputUnitsOptions: [ VolumeUnit(name: "Cups", unitsPerCup: 1),
+                                       VolumeUnit(name:"ml", unitsPerCup: 236.588) ],
+                  outputUnitsOptions: [ MassUnit(name: "Grams", unitsPerGram: 1.0),
+                                        MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]);
     }
     
-    init(ingredients: [Ingredient],
-         inputUnitsOptions: [VolumeUnit],
-         outputUnitsOptions: [MassUnit]) {
-        self.ingredients = ingredients
-        self.inputUnitsOptions = inputUnitsOptions
-        self.outputUnitsOptions = outputUnitsOptions
-    }
-
     init(ingredients: [Ingredient],
          inputUnitsOptions: [BakingUnit],
          outputUnitsOptions: [MassUnit]) {
