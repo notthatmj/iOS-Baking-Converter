@@ -13,14 +13,31 @@ struct Ingredient {
     var gramsPerCup: Double
 }
 
-struct VolumeUnit {
+protocol BakingUnit {
+    var name: String { get }
+    var unitsPerCup: Double { get }
+}
+
+struct VolumeUnit: BakingUnit {
     var name: String
     var unitsPerCup: Double
 }
 
-struct MassUnit {
+struct MassUnit: BakingUnit {
     var name: String
     var unitsPerGram: Double
+    var unitsPerCup: Double = 0
+    
+    init(name: String, unitsPerGram: Double) {
+        self.name = name;
+        self.unitsPerGram = unitsPerGram;
+    }
+
+    init(name: String, unitsPerGram: Double, unitsPerCup: Double) {
+        self.name = name;
+        self.unitsPerGram = unitsPerGram;
+        self.unitsPerCup = unitsPerCup;
+    }
 }
 
 fileprivate let defaultIngredients = [Ingredient(name: "Baking Powder", gramsPerCup: 192.0),
@@ -38,13 +55,13 @@ fileprivate let defaultIngredients = [Ingredient(name: "Baking Powder", gramsPer
 fileprivate let defaultInputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
                                              VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
 
-fileprivate let defaultOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0),
-                                              MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
+fileprivate let defaultOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0, unitsPerCup: 0),
+                                              MassUnit(name: "Ounces", unitsPerGram: 0.035274, unitsPerCup: 0) ]
 
 class Model {
 
     let ingredients: [Ingredient]
-    let inputUnitsOptions: [VolumeUnit]
+    let inputUnitsOptions: [BakingUnit]
     let outputUnitsOptions: [MassUnit]
     
     init() {
@@ -62,8 +79,16 @@ class Model {
         self.inputUnitsOptions = inputUnitsOptions
         self.outputUnitsOptions = outputUnitsOptions
     }
-    
-    func convert(_ quantity: Double, _ inUnit: VolumeUnit,
+
+    init(ingredients: [Ingredient],
+         inputUnitsOptions: [BakingUnit],
+         outputUnitsOptions: [MassUnit]) {
+        self.ingredients = ingredients
+        self.inputUnitsOptions = inputUnitsOptions
+        self.outputUnitsOptions = outputUnitsOptions
+    }
+
+    func convert(_ quantity: Double, _ inUnit: BakingUnit,
                  of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
         let grams = quantity * ( 1.0 / inUnit.unitsPerCup ) * ingredient.gramsPerCup
         let outputQuantity = grams * outUnit.unitsPerGram
