@@ -15,7 +15,6 @@ struct Ingredient {
 
 protocol BakingUnit {
     var name: String { get }
-    var unitsPerCup: Double { get }
 }
 
 struct VolumeUnit: BakingUnit {
@@ -26,7 +25,6 @@ struct VolumeUnit: BakingUnit {
 struct MassUnit: BakingUnit {
     var name: String
     var unitsPerGram: Double
-    var unitsPerCup: Double
     
     init(name: String, unitsPerGram: Double) {
         self.init(name: name, unitsPerGram: unitsPerGram, unitsPerCup: 0);
@@ -35,7 +33,6 @@ struct MassUnit: BakingUnit {
     init(name: String, unitsPerGram: Double, unitsPerCup: Double) {
         self.name = name;
         self.unitsPerGram = unitsPerGram;
-        self.unitsPerCup = unitsPerCup;
     }
 }
 
@@ -81,9 +78,13 @@ class Model {
 
     func convert(_ quantity: Double, _ inUnit: BakingUnit,
                  of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
-        let grams = quantity * ( 1.0 / inUnit.unitsPerCup ) * ingredient.gramsPerCup
-        let outputQuantity = grams * outUnit.unitsPerGram
-        return outputQuantity
+        if let volumeUnit = inUnit as? VolumeUnit {
+            let cups = quantity * ( 1.0 / volumeUnit.unitsPerCup )
+            let grams = cups * ingredient.gramsPerCup
+            let outputQuantity = grams * outUnit.unitsPerGram
+            return outputQuantity
+        }
+        return 0;
     }
 
 }
