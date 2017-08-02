@@ -15,6 +15,8 @@ struct Ingredient {
 
 protocol BakingUnit {
     var name: String { get }
+    func convert(_ quantity: Double,
+                 of ingredient: Ingredient, to outUnit: MassUnit) -> Double
 }
 
 struct VolumeUnit: BakingUnit {
@@ -41,6 +43,13 @@ struct MassUnit: BakingUnit {
         self.name = name;
         self.unitsPerGram = unitsPerGram;
     }
+    
+    func convert(_ quantity: Double,
+                 of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
+        let grams = quantity * (1 / unitsPerGram)
+        return grams * outUnit.unitsPerGram;
+    }
+
 }
 
 fileprivate let defaultIngredients = [Ingredient(name: "Baking Powder", gramsPerCup: 192.0),
@@ -85,12 +94,6 @@ class Model {
     
     func convert(_ quantity: Double, _ inUnit: BakingUnit,
                  of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
-        if let volumeUnit = inUnit as? VolumeUnit {
-            return volumeUnit.convert(quantity, of: ingredient, to: outUnit);
-        } else if let massUnit = inUnit as? MassUnit {
-            let grams = quantity * (1 / massUnit.unitsPerGram)
-            return grams * outUnit.unitsPerGram;
-        }
-        return 0
+        return inUnit.convert(quantity, of: ingredient, to: outUnit)
     }
 }
