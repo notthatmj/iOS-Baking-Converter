@@ -83,8 +83,10 @@ class Model {
             let grams = cups * ingredient.gramsPerCup
             let outputQuantity = grams * outUnit.unitsPerGram
             return outputQuantity
+        } else if let massUnit = inUnit as? MassUnit {
+            let grams = quantity * (1 / massUnit.unitsPerGram)
+            return grams * outUnit.unitsPerGram;
         }
-        return 0;
+        return 0
     }
-
 }
