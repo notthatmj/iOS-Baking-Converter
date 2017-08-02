@@ -20,6 +20,13 @@ protocol BakingUnit {
 struct VolumeUnit: BakingUnit {
     var name: String
     var unitsPerCup: Double
+    
+    func convert(_ quantity: Double,
+                 of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
+        let cups = quantity * ( 1.0 / unitsPerCup )
+        let grams = cups * ingredient.gramsPerCup
+        return grams * outUnit.unitsPerGram
+    }
 }
 
 struct MassUnit: BakingUnit {
@@ -75,14 +82,11 @@ class Model {
         self.inputUnitsOptions = inputUnitsOptions
         self.outputUnitsOptions = outputUnitsOptions
     }
-
+    
     func convert(_ quantity: Double, _ inUnit: BakingUnit,
                  of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
         if let volumeUnit = inUnit as? VolumeUnit {
-            let cups = quantity * ( 1.0 / volumeUnit.unitsPerCup )
-            let grams = cups * ingredient.gramsPerCup
-            let outputQuantity = grams * outUnit.unitsPerGram
-            return outputQuantity
+            return volumeUnit.convert(quantity, of: ingredient, to: outUnit);
         } else if let massUnit = inUnit as? MassUnit {
             let grams = quantity * (1 / massUnit.unitsPerGram)
             return grams * outUnit.unitsPerGram;
