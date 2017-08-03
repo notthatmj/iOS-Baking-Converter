@@ -61,8 +61,10 @@ class ModelTests: XCTestCase {
         XCTAssertEqualWithAccuracy(result, expectedResult, accuracy: 0.00001)
     }
 
-    func test3CupsToMilligramsConversion() {
+    func test3CupsToMillilitersConversion() {
         let result = SUT.convert(3, cups, of: sugar, to: milliliters)
+        
+        let expectedResult = 709.765
+        XCTAssertEqualWithAccuracy(result, expectedResult, accuracy: 0.001);
     }
-    
 }

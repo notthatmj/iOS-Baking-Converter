@@ -16,18 +16,30 @@ struct Ingredient {
 protocol BakingUnit {
     var name: String { get }
     func convert(_ quantity: Double,
-                 of ingredient: Ingredient, to outUnit: MassUnit) -> Double
+                 of ingredient: Ingredient, to outUnit: BakingUnit) -> Double
+    func convert(_ cups: Double, cupsOf: Ingredient) -> Double
 }
 
 struct VolumeUnit: BakingUnit {
     var name: String
     var unitsPerCup: Double
     
+    func convert(_ cups: Double, cupsTo volumeUnit: VolumeUnit) -> Double {
+        return cups * volumeUnit.unitsPerCup
+    }
+    
+    func convert(_ cups: Double) -> Double {
+        return cups * self.unitsPerCup
+    }
+    
+    func convert(_ cups: Double, cupsOf: Ingredient) -> Double {
+        return self.convert(cups)
+    }
+    
     func convert(_ quantity: Double,
-                 of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
+                 of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
         let cups = quantity * ( 1.0 / unitsPerCup )
-        let grams = cups * ingredient.gramsPerCup
-        return grams * outUnit.unitsPerGram
+        return outUnit.convert(cups, cupsOf: ingredient)
     }
 }
 
@@ -45,9 +57,17 @@ struct MassUnit: BakingUnit {
     }
     
     func convert(_ quantity: Double,
-                 of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
-        let grams = quantity * (1 / unitsPerGram)
-        return grams * outUnit.unitsPerGram;
+                 of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
+        if let massUnit = outUnit as? MassUnit {
+            let grams = quantity * (1 / unitsPerGram)
+            return grams * massUnit.unitsPerGram
+        }
+        return 0
+    }
+
+    func convert(_ cups: Double, cupsOf ingredient: Ingredient) -> Double {
+        let grams = cups * ingredient.gramsPerCup
+        return grams * self.unitsPerGram
     }
 
 }
@@ -93,7 +113,7 @@ class Model {
     }
     
     func convert(_ quantity: Double, _ inUnit: BakingUnit,
-                 of ingredient: Ingredient, to outUnit: MassUnit) -> Double {
+                 of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
         return inUnit.convert(quantity, of: ingredient, to: outUnit)
     }
 }
