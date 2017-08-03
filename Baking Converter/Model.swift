@@ -80,15 +80,6 @@ struct MassUnit: BakingUnit {
     // MassUnit
     var unitsPerGram: Double
     
-    init(name: String, unitsPerGram: Double) {
-        self.init(name: name, unitsPerGram: unitsPerGram, unitsPerCup: 0);
-    }
-    
-    init(name: String, unitsPerGram: Double, unitsPerCup: Double) {
-        self.name = name;
-        self.unitsPerGram = unitsPerGram;
-    }
-
 }
 
 fileprivate let defaultIngredients = [Ingredient(name: "Baking Powder", gramsPerCup: 192.0),
@@ -106,8 +97,8 @@ fileprivate let defaultIngredients = [Ingredient(name: "Baking Powder", gramsPer
 fileprivate let defaultInputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
                                              VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
 
-fileprivate let defaultOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0, unitsPerCup: 0),
-                                              MassUnit(name: "Ounces", unitsPerGram: 0.035274, unitsPerCup: 0) ]
+fileprivate let defaultOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0),
+                                              MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
 
 class Model {
 
