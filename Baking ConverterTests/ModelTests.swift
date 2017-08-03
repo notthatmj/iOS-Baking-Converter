@@ -13,14 +13,15 @@ fileprivate let grams = MassUnit(name: "Grams", unitsPerGram: 1)
 fileprivate let kilograms = MassUnit(name: "Kilograms", unitsPerGram: 0.001);
 fileprivate let sugar = Ingredient(name: "Sugar", gramsPerCup: 198.0)
 fileprivate let ounces = MassUnit(name: "Ounces", unitsPerGram: 0.03527396195)
-
+fileprivate let milliliters = VolumeUnit(name:"ml", unitsPerCup: 236.588)
+fileprivate let cups = VolumeUnit(name: "Cups", unitsPerCup: 1)
 fileprivate let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
                                       Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
                                       Ingredient(name: "Sugar", gramsPerCup: 198.0),
                                       Ingredient(name: "Soylent", gramsPerCup: 321.0)]
 
-fileprivate let testInputUnitsOptions: [BakingUnit] = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
-                                                        VolumeUnit(name:"ml", unitsPerCup: 236.588),
+fileprivate let testInputUnitsOptions: [BakingUnit] = [ cups,
+                                                        milliliters,
                                                         grams,
                                                         ounces] // as [Any]
 
@@ -60,4 +61,8 @@ class ModelTests: XCTestCase {
         XCTAssertEqualWithAccuracy(result, expectedResult, accuracy: 0.00001)
     }
 
+    func test3CupsToMilligramsConversion() {
+        let result = SUT.convert(3, cups, of: sugar, to: milliliters)
+    }
+    
 }
