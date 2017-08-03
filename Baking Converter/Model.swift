@@ -44,10 +44,6 @@ struct VolumeUnit: BakingUnit {
     // VolumeUnit
     var unitsPerCup: Double
 
-    func convert(_ cups: Double, cupsTo volumeUnit: VolumeUnit) -> Double {
-        return cups * volumeUnit.unitsPerCup
-    }
-    
     func convert(_ cups: Double) -> Double {
         return cups * self.unitsPerCup
     }
