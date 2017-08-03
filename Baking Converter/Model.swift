@@ -18,6 +18,7 @@ protocol BakingUnit {
     func convert(_ quantity: Double,
                  of ingredient: Ingredient, to outUnit: BakingUnit) -> Double
     func convert(_ cups: Double, cupsOf: Ingredient) -> Double
+    func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double
 }
 
 struct VolumeUnit: BakingUnit {
@@ -67,18 +68,13 @@ struct MassUnit: BakingUnit {
         return grams * massUnit.unitsPerGram
     }
     
-    func convert(quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
+    func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
         return massUnit.convert(quantity: quantity, to: self)
     }
     
     func convert(_ quantity: Double,
                  of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
-        if let massUnit = outUnit as? MassUnit {
-            return massUnit.convert(quantity: quantity, of: ingredient, from: self)
-        } else if let volumeUnit = outUnit as? VolumeUnit {
-            return volumeUnit.convert(quantity, of: ingredient, from: self)
-        }
-        return 0
+        return outUnit.convert(quantity, of: ingredient, from: self)
     }
 
     func convert(_ cups: Double, cupsOf ingredient: Ingredient) -> Double {
