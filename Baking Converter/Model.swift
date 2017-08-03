@@ -56,11 +56,23 @@ struct MassUnit: BakingUnit {
         self.unitsPerGram = unitsPerGram;
     }
     
+    func convert(quantity: Double, to massUnit: MassUnit) -> Double {
+        let grams = quantity * (1 / unitsPerGram)
+        return grams * massUnit.unitsPerGram
+    }
+    
+    func convert(_ quantity: Double, of ingredient: Ingredient, to volumeUnit: VolumeUnit) -> Double {
+        let grams = quantity * (1 / unitsPerGram)
+        let cups = grams * (1 / ingredient.gramsPerCup)
+        return cups * volumeUnit.unitsPerCup
+    }
+    
     func convert(_ quantity: Double,
                  of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
         if let massUnit = outUnit as? MassUnit {
-            let grams = quantity * (1 / unitsPerGram)
-            return grams * massUnit.unitsPerGram
+            return convert(quantity: quantity, to: massUnit)
+        } else if let volumeUnit = outUnit as? VolumeUnit {
+            return convert(quantity, of: ingredient, to: volumeUnit)
         }
         return 0
     }

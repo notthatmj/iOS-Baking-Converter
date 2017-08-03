@@ -17,7 +17,7 @@ fileprivate let milliliters = VolumeUnit(name:"ml", unitsPerCup: 236.588)
 fileprivate let cups = VolumeUnit(name: "Cups", unitsPerCup: 1)
 fileprivate let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
                                       Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
-                                      Ingredient(name: "Sugar", gramsPerCup: 198.0),
+                                      sugar,
                                       Ingredient(name: "Soylent", gramsPerCup: 321.0)]
 
 fileprivate let testInputUnitsOptions: [BakingUnit] = [ cups,
@@ -65,6 +65,13 @@ class ModelTests: XCTestCase {
         let result = SUT.convert(3, cups, of: sugar, to: milliliters)
         
         let expectedResult = 709.765
-        XCTAssertEqualWithAccuracy(result, expectedResult, accuracy: 0.001);
+        XCTAssertEqualWithAccuracy(result, expectedResult, accuracy: 0.001)
+    }
+    
+    func test3OuncesOfSugarToMillilitersConversion() {
+        let result = SUT.convert(3, ounces, of: sugar, to: milliliters)
+        
+        let expectedResult = 101.6235905609
+        XCTAssertEqualWithAccuracy(result, expectedResult, accuracy: 0.0001)
     }
 }
