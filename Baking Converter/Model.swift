@@ -17,7 +17,7 @@ protocol BakingUnit {
     var name: String { get }
     func convert(_ quantity: Double,
                  of ingredient: Ingredient, to outUnit: BakingUnit) -> Double
-    func convert(_ cups: Double, cupsOf: Ingredient) -> Double
+    func convert(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double
     func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double
 }
 
@@ -27,14 +27,13 @@ struct VolumeUnit: BakingUnit {
 
     func convert(_ quantity: Double,
                  of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
-        let cups = quantity * ( 1.0 / unitsPerCup )
-        return outUnit.convert(cups, cupsOf: ingredient)
+        return outUnit.convert(quantity, of: ingredient, from: self)
     }
 
-    func convert(_ cups: Double, cupsOf: Ingredient) -> Double {
-        return self.convert(cups)
+    func convert(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
+        return convert(quantity: quantity, to: volumeUnit)
     }
-    
+
     func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
         let grams = quantity * (1 / massUnit.unitsPerGram)
         let cups = grams * (1 / ingredient.gramsPerCup)
@@ -48,6 +47,11 @@ struct VolumeUnit: BakingUnit {
         return cups * self.unitsPerCup
     }
     
+    func convert(quantity: Double, to volumeUnit: VolumeUnit) -> Double {
+        let cups = quantity * (1 / volumeUnit.unitsPerCup)
+        return cups * unitsPerCup
+    }
+    
 }
 
 struct MassUnit: BakingUnit {
@@ -59,9 +63,10 @@ struct MassUnit: BakingUnit {
         return outUnit.convert(quantity, of: ingredient, from: self)
     }
 
-    func convert(_ cups: Double, cupsOf ingredient: Ingredient) -> Double {
+    func convert(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
+        let cups = quantity * (1 / volumeUnit.unitsPerCup)
         let grams = cups * ingredient.gramsPerCup
-        return grams * self.unitsPerGram
+        return grams * unitsPerGram
     }
 
     func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
