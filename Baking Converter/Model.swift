@@ -15,9 +15,9 @@ struct Ingredient {
 
 protocol BakingUnit {
     var name: String { get }
-    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, to outUnit: BakingUnit) -> Double
-    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double
-    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double
+    func convertQuantity(_ : Double, of _: Ingredient, to _: BakingUnit) -> Double
+    func convertQuantity(_ : Double, of _: Ingredient, from _: VolumeUnit) -> Double
+    func convertQuantity(_ : Double, of _: Ingredient, from _: MassUnit) -> Double
 }
 
 struct VolumeUnit {
