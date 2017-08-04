@@ -15,10 +15,9 @@ struct Ingredient {
 
 protocol BakingUnit {
     var name: String { get }
-    func convert(_ quantity: Double,
-                 of ingredient: Ingredient, to outUnit: BakingUnit) -> Double
-    func convert(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double
-    func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, to outUnit: BakingUnit) -> Double
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double
 }
 
 struct VolumeUnit {
@@ -36,16 +35,17 @@ struct VolumeUnit {
 
 extension VolumeUnit: BakingUnit {
 
-    func convert(_ quantity: Double,
-                 of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
-        return outUnit.convert(quantity, of: ingredient, from: self)
+    func convertQuantity(_ quantity: Double,
+                         of ingredient: Ingredient,
+                         to outUnit: BakingUnit) -> Double {
+        return outUnit.convertQuantity(quantity, of: ingredient, from: self)
     }
     
-    func convert(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
         return convert(quantity: quantity, to: volumeUnit)
     }
     
-    func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
         let grams = quantity * (1 / massUnit.unitsPerGram)
         let cups = grams * (1 / ingredient.gramsPerCup)
         return cups * unitsPerCup
@@ -66,18 +66,19 @@ struct MassUnit {
 }
 
 extension MassUnit: BakingUnit {
-    func convert(_ quantity: Double,
-                 of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
-        return outUnit.convert(quantity, of: ingredient, from: self)
+    func convertQuantity(_ quantity: Double,
+                         of ingredient: Ingredient,
+                         to outUnit: BakingUnit) -> Double {
+        return outUnit.convertQuantity(quantity, of: ingredient, from: self)
     }
     
-    func convert(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
         let cups = quantity * (1 / volumeUnit.unitsPerCup)
         let grams = cups * ingredient.gramsPerCup
         return grams * unitsPerGram
     }
     
-    func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
         return massUnit.convert(quantity: quantity, to: self)
     }
 }
@@ -124,6 +125,6 @@ class Model {
     
     func convert(_ quantity: Double, _ inUnit: BakingUnit,
                  of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
-        return inUnit.convert(quantity, of: ingredient, to: outUnit)
+        return inUnit.convertQuantity(quantity, of: ingredient, to: outUnit)
     }
 }
