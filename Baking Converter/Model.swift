@@ -103,19 +103,23 @@ class Model {
 
     let ingredients: [Ingredient]
     let inputUnitsOptions: [BakingUnit]
-    let outputUnitsOptions: [MassUnit]
+    let outputUnitsOptions: [BakingUnit]
     
     convenience init() {
         self.init(ingredients: defaultIngredients,
                   inputUnitsOptions: [ VolumeUnit(name: "Cups", unitsPerCup: 1),
-                                       VolumeUnit(name:"ml", unitsPerCup: 236.588) ],
-                  outputUnitsOptions: [ MassUnit(name: "Grams", unitsPerGram: 1.0),
+                                       VolumeUnit(name:"ml", unitsPerCup: 236.588),
+                                       MassUnit(name: "Grams", unitsPerGram: 1.0),
+                                       MassUnit(name: "Ounces", unitsPerGram: 0.035274) ],
+                  outputUnitsOptions: [ VolumeUnit(name: "Cups", unitsPerCup: 1),
+                                        VolumeUnit(name:"ml", unitsPerCup: 236.588),
+                                        MassUnit(name: "Grams", unitsPerGram: 1.0),
                                         MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]);
     }
     
     init(ingredients: [Ingredient],
          inputUnitsOptions: [BakingUnit],
-         outputUnitsOptions: [MassUnit]) {
+         outputUnitsOptions: [BakingUnit]) {
         self.ingredients = ingredients
         self.inputUnitsOptions = inputUnitsOptions
         self.outputUnitsOptions = outputUnitsOptions
