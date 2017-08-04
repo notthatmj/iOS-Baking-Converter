@@ -26,27 +26,25 @@ struct VolumeUnit {
 
     var unitsPerCup: Double
     
-    func convert(quantity: Double, to volumeUnit: VolumeUnit) -> Double {
+    func convert(quantity: Double, to toUnit: VolumeUnit) -> Double {
         let cups = quantity * (1 / unitsPerCup)
-        return cups * volumeUnit.unitsPerCup
+        return cups * toUnit.unitsPerCup
     }
 
 }
 
 extension VolumeUnit: BakingUnit {
 
-    func convertQuantity(_ quantity: Double,
-                         of ingredient: Ingredient,
-                         to outUnit: BakingUnit) -> Double {
-        return outUnit.convertQuantity(quantity, of: ingredient, from: self)
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, to toUnit: BakingUnit) -> Double {
+        return toUnit.convertQuantity(quantity, of: ingredient, from: self)
     }
     
-    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
-        return volumeUnit.convert(quantity: quantity, to: self)
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from fromUnit: VolumeUnit) -> Double {
+        return fromUnit.convert(quantity: quantity, to: self)
     }
     
-    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
-        let grams = quantity * (1 / massUnit.unitsPerGram)
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, from fromUnit: MassUnit) -> Double {
+        let grams = quantity * (1 / fromUnit.unitsPerGram)
         let cups = grams * (1 / ingredient.gramsPerCup)
         return cups * unitsPerCup
     }
@@ -58,9 +56,9 @@ struct MassUnit {
     
     var unitsPerGram: Double
     
-    func convert(quantity: Double, to massUnit: MassUnit) -> Double {
+    func convert(quantity: Double, to toUnit: MassUnit) -> Double {
         let grams = quantity * (1 / unitsPerGram)
-        return grams * massUnit.unitsPerGram
+        return grams * toUnit.unitsPerGram
     }
     
 }
