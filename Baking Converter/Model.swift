@@ -21,28 +21,12 @@ protocol BakingUnit {
     func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double
 }
 
-struct VolumeUnit: BakingUnit {
-    // BakingUnit
+struct VolumeUnit {
+
     var name: String
 
-    func convert(_ quantity: Double,
-                 of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
-        return outUnit.convert(quantity, of: ingredient, from: self)
-    }
-
-    func convert(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
-        return convert(quantity: quantity, to: volumeUnit)
-    }
-
-    func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
-        let grams = quantity * (1 / massUnit.unitsPerGram)
-        let cups = grams * (1 / ingredient.gramsPerCup)
-        return cups * unitsPerCup
-    }
-
-    // VolumeUnit
     var unitsPerCup: Double
-
+    
     func convert(_ cups: Double) -> Double {
         return cups * self.unitsPerCup
     }
@@ -54,24 +38,28 @@ struct VolumeUnit: BakingUnit {
     
 }
 
-struct MassUnit: BakingUnit {
-    // BakingUnit
-    var name: String
-    
+extension VolumeUnit: BakingUnit {
+
     func convert(_ quantity: Double,
                  of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
         return outUnit.convert(quantity, of: ingredient, from: self)
     }
-
+    
     func convert(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
-        let cups = quantity * (1 / volumeUnit.unitsPerCup)
-        let grams = cups * ingredient.gramsPerCup
-        return grams * unitsPerGram
+        return convert(quantity: quantity, to: volumeUnit)
     }
-
+    
     func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
-        return massUnit.convert(quantity: quantity, to: self)
+        let grams = quantity * (1 / massUnit.unitsPerGram)
+        let cups = grams * (1 / ingredient.gramsPerCup)
+        return cups * unitsPerCup
     }
+    
+}
+
+struct MassUnit {
+    // BakingUnit
+    var name: String
     
     // MassUnit
     var unitsPerGram: Double
@@ -81,6 +69,23 @@ struct MassUnit: BakingUnit {
         return grams * massUnit.unitsPerGram
     }
     
+}
+
+extension MassUnit: BakingUnit {
+    func convert(_ quantity: Double,
+                 of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
+        return outUnit.convert(quantity, of: ingredient, from: self)
+    }
+    
+    func convert(_ quantity: Double, of ingredient: Ingredient, from volumeUnit: VolumeUnit) -> Double {
+        let cups = quantity * (1 / volumeUnit.unitsPerCup)
+        let grams = cups * ingredient.gramsPerCup
+        return grams * unitsPerGram
+    }
+    
+    func convert(_ quantity: Double, of ingredient: Ingredient, from massUnit: MassUnit) -> Double {
+        return massUnit.convert(quantity: quantity, to: self)
+    }
 }
 
 fileprivate let defaultIngredients = [Ingredient(name: "Baking Powder", gramsPerCup: 192.0),
