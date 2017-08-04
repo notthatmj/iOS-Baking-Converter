@@ -27,10 +27,6 @@ struct VolumeUnit {
 
     var unitsPerCup: Double
     
-    func convert(_ cups: Double) -> Double {
-        return cups * self.unitsPerCup
-    }
-    
     func convert(quantity: Double, to volumeUnit: VolumeUnit) -> Double {
         let cups = quantity * (1 / volumeUnit.unitsPerCup)
         return cups * unitsPerCup
@@ -58,10 +54,8 @@ extension VolumeUnit: BakingUnit {
 }
 
 struct MassUnit {
-    // BakingUnit
     var name: String
     
-    // MassUnit
     var unitsPerGram: Double
     
     func convert(quantity: Double, to massUnit: MassUnit) -> Double {
