@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		892057ED1EEC746400518F5B /* ConverterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892057EC1EEC746400518F5B /* ConverterController.swift */; };
 		892057EF1EEC777F00518F5B /* ConverterControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892057EE1EEC777F00518F5B /* ConverterControllerTests.swift */; };
+		89B94CED1F3A02040037370C /* ConverterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B94CEC1F3A02040037370C /* ConverterViewControllerTests.swift */; };
 		89C781AB1EFC821000CCE01A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C781AA1EFC821000CCE01A /* Model.swift */; };
 		89DE1E8F1EEC63960072F9DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE1E8E1EEC63960072F9DC /* AppDelegate.swift */; };
 		89DE1E911EEC63960072F9DC /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE1E901EEC63960072F9DC /* ConverterViewController.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		892057EC1EEC746400518F5B /* ConverterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterController.swift; sourceTree = "<group>"; };
 		892057EE1EEC777F00518F5B /* ConverterControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterControllerTests.swift; sourceTree = "<group>"; };
+		89B94CEC1F3A02040037370C /* ConverterViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterViewControllerTests.swift; sourceTree = "<group>"; };
 		89C781AA1EFC821000CCE01A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		89DE1E8B1EEC63960072F9DC /* Baking Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Baking Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DE1E8E1EEC63960072F9DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				892057EE1EEC777F00518F5B /* ConverterControllerTests.swift */,
+				89B94CEC1F3A02040037370C /* ConverterViewControllerTests.swift */,
 				89F7FE681EFDFAFE003F65D0 /* ModelTests.swift */,
 				89DE1EA51EEC63970072F9DC /* Info.plist */,
 			);
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				892057EF1EEC777F00518F5B /* ConverterControllerTests.swift in Sources */,
+				89B94CED1F3A02040037370C /* ConverterViewControllerTests.swift in Sources */,
 				89F7FE691EFDFAFE003F65D0 /* ModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,8 @@ class ConverterViewController: UIViewController {
     @IBOutlet var outputUnitsPicker: UIPickerView!
     @IBOutlet var inputField: UITextField!
     @IBOutlet var resultsLabel: UILabel!
-    
+    @IBOutlet var changeIngredientButton: UIButton!
+
     var controller: ConverterController!
     
     override func viewDidLoad() {
