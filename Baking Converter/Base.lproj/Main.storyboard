@@ -66,6 +66,9 @@
                                 <rect key="frame" x="124" y="157" width="127" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change Ingredient"/>
+                                <connections>
+                                    <segue destination="JCW-FP-V7p" kind="presentation" id="MBF-lx-vjV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.73986677550000002" green="1" blue="0.73399531760000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,6 +85,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--Select Ingredient View Controller-->
+        <scene sceneID="Amb-9P-lI2">
+            <objects>
+                <viewController id="JCW-FP-V7p" customClass="SelectIngredientViewController" customModule="Baking_Converter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jeu-th-jAp"/>
+                        <viewControllerLayoutGuide type="bottom" id="0hH-wK-kn5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AX3-Fb-Xdm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wni-SH-usj">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Ingredients" id="naV-W6-MJI">
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="DVG-at-pkq">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="JCW-FP-V7p" id="IRR-Ex-FsN"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="JCW-FP-V7p" id="ktr-oD-uxI"/>
+                                </connections>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cch-X7-OiM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cch-X7-OiM" firstAttribute="top" secondItem="Wni-SH-usj" secondAttribute="bottom" id="6pc-TO-JpG"/>
+                            <constraint firstAttribute="leading" secondItem="cch-X7-OiM" secondAttribute="leading" id="CfZ-sp-SUE"/>
+                            <constraint firstAttribute="trailing" secondItem="cch-X7-OiM" secondAttribute="trailing" id="O4l-YS-ETL"/>
+                            <constraint firstItem="0hH-wK-kn5" firstAttribute="top" secondItem="cch-X7-OiM" secondAttribute="bottom" id="UYO-Rq-F0g"/>
+                            <constraint firstItem="Wni-SH-usj" firstAttribute="leading" secondItem="AX3-Fb-Xdm" secondAttribute="leading" id="UoN-OM-eMY"/>
+                            <constraint firstItem="Wni-SH-usj" firstAttribute="top" secondItem="jeu-th-jAp" secondAttribute="bottom" id="acL-h5-O97"/>
+                            <constraint firstAttribute="trailing" secondItem="Wni-SH-usj" secondAttribute="trailing" id="gWF-8s-3pR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6S1-Vq-YAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1040.8" y="138.98050974512745"/>
         </scene>
     </scenes>
 </document>
