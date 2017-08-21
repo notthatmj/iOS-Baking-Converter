@@ -8,9 +8,9 @@
 
 import Foundation
 
-class ConverterController: ConverterSceneDelegate, ConverterSceneDataSource {
+class ConverterController: ConverterSceneDataSource {
     
-    private var model = Model();
+    fileprivate var model = Model();
     
     init() {}
     
@@ -53,6 +53,25 @@ class ConverterController: ConverterSceneDelegate, ConverterSceneDataSource {
         return model.outputUnitsOptions[index].name
     }
 
+}
+
+extension ConverterController: ConverterSceneDelegate {
+
+    private func updateOutputTextForScene(_ scene: ConverterScene) {
+        guard let inputText = scene.inputText,
+            let quantity = Double(inputText) else {
+                scene.outputText = "0"
+                return
+        }
+        
+        let selectedIngredient = model.ingredients[scene.selectedIngredientIndex]
+        let selectedInputUnits = model.inputUnitsOptions[scene.selectedInputUnitsIndex]
+        let selectedOuputUnits = model.outputUnitsOptions[scene.selectedOutputUnitsIndex]
+        
+        let outputQuantity = model.convert(quantity, selectedInputUnits, of: selectedIngredient, to: selectedOuputUnits)
+        scene.outputText = String(format: "%.1f", outputQuantity)
+    }
+    
     func converterSceneInputTextDidChange(_ scene: ConverterScene) {
         updateOutputTextForScene(scene)
     }
@@ -67,21 +86,6 @@ class ConverterController: ConverterSceneDelegate, ConverterSceneDataSource {
     
     func converterSceneIngredientDidChange(_ scene: ConverterScene) {
         updateOutputTextForScene(scene)
-    }
-
-    private func updateOutputTextForScene(_ scene: ConverterScene) {
-        guard let inputText = scene.inputText,
-            let quantity = Double(inputText) else {
-            scene.outputText = "0"
-            return
-        }
-        
-        let selectedIngredient = model.ingredients[scene.selectedIngredientIndex]
-        let selectedInputUnits = model.inputUnitsOptions[scene.selectedInputUnitsIndex]
-        let selectedOuputUnits = model.outputUnitsOptions[scene.selectedOutputUnitsIndex]
-
-        let outputQuantity = model.convert(quantity, selectedInputUnits, of: selectedIngredient, to: selectedOuputUnits)
-        scene.outputText = String(format: "%.1f", outputQuantity)
     }
     
 }
