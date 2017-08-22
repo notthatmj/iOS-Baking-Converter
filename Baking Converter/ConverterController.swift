@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ConverterController: ConverterSceneDataSource {
+class ConverterController {
     
     fileprivate var model = Model();
     
@@ -20,17 +20,21 @@ class ConverterController: ConverterSceneDataSource {
                            outputUnitsOptions: outputUnitsOptions )
     }
     
+}
+
+extension ConverterController: ConverterSceneDataSource {
+
     func numberOfIngredients() -> Int {
         return model.ingredients.count
     }
-    
+
     func nameForIngredientAtIndex(_ index: Int) -> String? {
         guard case 0 ..< model.ingredients.count = index else {
             return nil
         }
         return model.ingredients[index].name
     }
-    
+
     func numberOfInputUnitsOptions() -> Int {
         return model.inputUnitsOptions.count
     }
@@ -41,11 +45,11 @@ class ConverterController: ConverterSceneDataSource {
         }
         return model.inputUnitsOptions[index].name
     }
-    
+
     func numberOfOutputUnitsOptions() -> Int {
         return model.outputUnitsOptions.count
     }
-    
+
     func nameForOutputUnitsOptionsAtIndex(_ index: Int) -> String? {
         guard case 0 ..< model.outputUnitsOptions.count = index else {
             return nil
