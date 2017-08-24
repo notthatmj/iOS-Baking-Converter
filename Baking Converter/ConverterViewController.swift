@@ -9,14 +9,6 @@
 import UIKit
 import Foundation
 
-protocol ConverterScene: AnyObject {
-    var inputText: String? { get }
-    var outputText: String? {get set}
-    var selectedIngredientIndex: Int { get }
-    var selectedInputUnitsIndex: Int { get }
-    var selectedOutputUnitsIndex: Int { get }
-}
-
 class ConverterViewController: UIViewController {
 
     @IBOutlet weak var ingredientsPicker: UIPickerView!
@@ -36,35 +28,6 @@ class ConverterViewController: UIViewController {
 
     @IBAction func textFieldEditingChangedAction(_ sender: Any) {
         controller.converterSceneInputTextDidChange(self)
-    }
-    
-}
-
-extension ConverterViewController: ConverterScene {
-
-    var inputText: String? {
-        return inputField.text
-    }
-    
-    var outputText: String? {
-        get {
-            return resultsLabel.text
-        }
-        set {
-            resultsLabel.text = newValue
-        }
-    }
-
-    var selectedIngredientIndex: Int {
-        return ingredientsPicker.selectedRow(inComponent: 0)
-    }
-    
-    var selectedInputUnitsIndex: Int {
-        return inputUnitsPicker.selectedRow(inComponent: 0)
-    }
-    
-    var selectedOutputUnitsIndex: Int {
-        return outputUnitsPicker.selectedRow(inComponent: 0)
     }
     
 }
@@ -114,3 +77,41 @@ extension ConverterViewController: UIPickerViewDelegate {
         return
     }
 }
+
+protocol ConverterScene: class {
+    var inputText: String? { get }
+    var outputText: String? {get set}
+    var selectedIngredientIndex: Int { get }
+    var selectedInputUnitsIndex: Int { get }
+    var selectedOutputUnitsIndex: Int { get }
+}
+
+extension ConverterViewController: ConverterScene {
+    
+    var inputText: String? {
+        return inputField.text
+    }
+    
+    var outputText: String? {
+        get {
+            return resultsLabel.text
+        }
+        set {
+            resultsLabel.text = newValue
+        }
+    }
+    
+    var selectedIngredientIndex: Int {
+        return ingredientsPicker.selectedRow(inComponent: 0)
+    }
+    
+    var selectedInputUnitsIndex: Int {
+        return inputUnitsPicker.selectedRow(inComponent: 0)
+    }
+    
+    var selectedOutputUnitsIndex: Int {
+        return outputUnitsPicker.selectedRow(inComponent: 0)
+    }
+    
+}
+
