@@ -10,9 +10,11 @@ import Foundation
 
 class ConverterController {
     
-    fileprivate var model = Model();
+    fileprivate var model: Model;
     
-    init() {}
+    init() {
+        model = Model()
+    }
     
     init(ingredients: [Ingredient], inputUnitsOptions: [VolumeUnit], outputUnitsOptions: [MassUnit]) {
         self.model = Model(ingredients: ingredients,
@@ -20,9 +22,7 @@ class ConverterController {
                            outputUnitsOptions: outputUnitsOptions )
     }
     
-    func numberOfIngredients() -> Int {
-        return model.ingredients.count
-    }
+    var numberOfIngredients: Int { return model.ingredients.count }
     
     func nameForIngredientAtIndex(_ index: Int) -> String? {
         guard case 0 ..< model.ingredients.count = index else {
@@ -31,9 +31,7 @@ class ConverterController {
         return model.ingredients[index].name
     }
     
-    func numberOfInputUnitsOptions() -> Int {
-        return model.inputUnitsOptions.count
-    }
+    var numberOfInputUnitsOptions: Int { return model.inputUnitsOptions.count }
     
     func nameForInputUnitOptionAtIndex(_ index: Int) -> String? {
         guard case 0 ..< model.inputUnitsOptions.count = index  else {
@@ -41,10 +39,9 @@ class ConverterController {
         }
         return model.inputUnitsOptions[index].name
     }
+
+    var numberOfOutputUnitsOptions: Int { return model.outputUnitsOptions.count }
     
-    func numberOfOutputUnitsOptions() -> Int {
-        return model.outputUnitsOptions.count
-    }
     
     func nameForOutputUnitsOptionsAtIndex(_ index: Int) -> String? {
         guard case 0 ..< model.outputUnitsOptions.count = index else {

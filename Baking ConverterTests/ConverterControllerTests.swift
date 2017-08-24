@@ -45,12 +45,12 @@ class ConverterController_DataSourceMethods_Tests: XCTestCase {
     func testNameForIngredientAtIndex() {
         // Run
         var ingredientNames: [String?] = []
-        for index in 0 ..< SUT.numberOfIngredients() {
+        for index in 0 ..< SUT.numberOfIngredients {
             ingredientNames.append(SUT.nameForIngredientAtIndex(index))
         }
         
         // Assert
-        for index in 0 ..< SUT.numberOfIngredients() {
+        for index in 0 ..< SUT.numberOfIngredients {
             XCTAssertEqual(ingredientNames[index], testIngredients[index].name)
         }
     }
@@ -71,7 +71,7 @@ class ConverterController_DataSourceMethods_Tests: XCTestCase {
 
     func testNumberOfInputUnitsOptions() {
         // Run
-        let returnValue = SUT.numberOfInputUnitsOptions()
+        let returnValue = SUT.numberOfInputUnitsOptions
         
         // Assert
         XCTAssertEqual(returnValue, testInputUnitsOptions.count)
@@ -80,12 +80,12 @@ class ConverterController_DataSourceMethods_Tests: XCTestCase {
     func testNameForInputUnitsOptionsAtIndex() {
         // Run
         var inputUnitsOptionsNames: [String?] = []
-        for index in 0 ..< SUT.numberOfInputUnitsOptions() {
+        for index in 0 ..< SUT.numberOfInputUnitsOptions {
             inputUnitsOptionsNames.append(SUT.nameForInputUnitOptionAtIndex(index))
         }
         
         // Assert
-        for index in 0 ..< SUT.numberOfInputUnitsOptions() {
+        for index in 0 ..< SUT.numberOfInputUnitsOptions {
             XCTAssertEqual(inputUnitsOptionsNames[index], testInputUnitsOptions[index].name)
         }
     }
@@ -100,7 +100,7 @@ class ConverterController_DataSourceMethods_Tests: XCTestCase {
     
     func testNumberOfOutputUnitsOptions() {
         // Run
-        let returnValue = SUT.numberOfOutputUnitsOptions()
+        let returnValue = SUT.numberOfOutputUnitsOptions
         
         // Assert
         XCTAssertEqual(returnValue, testOutputUnitsOptions.count)
@@ -109,12 +109,12 @@ class ConverterController_DataSourceMethods_Tests: XCTestCase {
     func testNameForOutputUnitsOptionsAtIndex() {
         // Run
         var outputUnitsOptionsNames: [String?] = []
-        for index in 0 ..< SUT.numberOfOutputUnitsOptions() {
+        for index in 0 ..< SUT.numberOfOutputUnitsOptions {
             outputUnitsOptionsNames.append(SUT.nameForOutputUnitsOptionsAtIndex(index))
         }
         
         // Assert
-        for index in 0 ..< SUT.numberOfOutputUnitsOptions() {
+        for index in 0 ..< SUT.numberOfOutputUnitsOptions {
             XCTAssertEqual(outputUnitsOptionsNames[index], testOutputUnitsOptions[index].name)
         }
     }

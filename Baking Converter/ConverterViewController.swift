@@ -40,11 +40,11 @@ extension ConverterViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
         case inputUnitsPicker:
-            return controller.numberOfInputUnitsOptions()
+            return controller.numberOfInputUnitsOptions
         case outputUnitsPicker:
-            return controller.numberOfOutputUnitsOptions()
+            return controller.numberOfOutputUnitsOptions
         default:
-            return controller.numberOfIngredients()
+            return controller.numberOfIngredients
         }
     }
 }
