@@ -41,20 +41,22 @@ class ConverterViewController: UIViewController {
     @IBOutlet weak var inputField: UITextField!
     @IBOutlet weak var resultsLabel: UILabel!
     
-    var delegate: ConverterSceneDelegate!
-    var dataSource: ConverterSceneDataSource!
+//    var delegate: ConverterSceneDelegate!
+//    var dataSource: ConverterSceneDataSource!
+    var controller: (ConverterSceneDelegate & ConverterSceneDataSource)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         resultsLabel.layer.cornerRadius = 8.0
         resultsLabel.layer.masksToBounds = true
-        let controller = ConverterController()
-        delegate = controller
-        dataSource = controller
+//        let controller = ConverterController()
+//        delegate = controller
+//        dataSource = controller
+        controller = ConverterController()
     }
 
     @IBAction func textFieldEditingChangedAction(_ sender: Any) {
-        delegate.converterSceneInputTextDidChange(self)
+        controller.converterSceneInputTextDidChange(self)
     }
     
 }
@@ -96,11 +98,11 @@ extension ConverterViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
         case inputUnitsPicker:
-            return dataSource.numberOfInputUnitsOptions()
+            return controller.numberOfInputUnitsOptions()
         case outputUnitsPicker:
-            return dataSource.numberOfOutputUnitsOptions()
+            return controller.numberOfOutputUnitsOptions()
         default:
-            return dataSource.numberOfIngredients()
+            return controller.numberOfIngredients()
         }
     }
 }
@@ -110,23 +112,23 @@ extension ConverterViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
         case inputUnitsPicker:
-            return dataSource.nameForInputUnitOptionAtIndex(row)
+            return controller.nameForInputUnitOptionAtIndex(row)
         case outputUnitsPicker:
-            return dataSource.nameForOutputUnitsOptionsAtIndex(row)
+            return controller.nameForOutputUnitsOptionsAtIndex(row)
         default:
-            return dataSource.nameForIngredientAtIndex(row)
+            return controller.nameForIngredientAtIndex(row)
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case ingredientsPicker:
-            delegate.converterSceneIngredientDidChange(self)
+            controller.converterSceneIngredientDidChange(self)
             break
         case inputUnitsPicker:
-            delegate.converterSceneInputUnitsDidChange(self)
+            controller.converterSceneInputUnitsDidChange(self)
         case outputUnitsPicker:
-            delegate.converterSceneOutputUnitsDidChange(self)
+            controller.converterSceneOutputUnitsDidChange(self)
         default:
             break
         }
