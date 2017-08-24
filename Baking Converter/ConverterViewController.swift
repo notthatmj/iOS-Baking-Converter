@@ -17,22 +17,6 @@ protocol ConverterScene: AnyObject {
     var selectedOutputUnitsIndex: Int { get }
 }
 
-protocol ConverterSceneDataSource {
-    func numberOfIngredients() -> Int
-    func nameForIngredientAtIndex(_ index: Int) -> String?
-    func numberOfInputUnitsOptions() -> Int
-    func nameForInputUnitOptionAtIndex(_ : Int) -> String?
-    func numberOfOutputUnitsOptions() -> Int
-    func nameForOutputUnitsOptionsAtIndex(_ : Int) -> String?
-}
-
-protocol ConverterSceneDelegate {
-    func converterSceneInputTextDidChange(_ : ConverterScene)
-    func converterSceneInputUnitsDidChange(_ : ConverterScene)
-    func converterSceneOutputUnitsDidChange(_ : ConverterScene)
-    func converterSceneIngredientDidChange(_ : ConverterScene)
-}
-
 class ConverterViewController: UIViewController {
 
     @IBOutlet weak var ingredientsPicker: UIPickerView!
@@ -41,17 +25,12 @@ class ConverterViewController: UIViewController {
     @IBOutlet weak var inputField: UITextField!
     @IBOutlet weak var resultsLabel: UILabel!
     
-//    var delegate: ConverterSceneDelegate!
-//    var dataSource: ConverterSceneDataSource!
-    var controller: (ConverterSceneDelegate & ConverterSceneDataSource)!
+    var controller: ConverterController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         resultsLabel.layer.cornerRadius = 8.0
         resultsLabel.layer.masksToBounds = true
-//        let controller = ConverterController()
-//        delegate = controller
-//        dataSource = controller
         controller = ConverterController()
     }
 

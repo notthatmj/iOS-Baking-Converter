@@ -20,21 +20,17 @@ class ConverterController {
                            outputUnitsOptions: outputUnitsOptions )
     }
     
-}
-
-extension ConverterController: ConverterSceneDataSource {
-
     func numberOfIngredients() -> Int {
         return model.ingredients.count
     }
-
+    
     func nameForIngredientAtIndex(_ index: Int) -> String? {
         guard case 0 ..< model.ingredients.count = index else {
             return nil
         }
         return model.ingredients[index].name
     }
-
+    
     func numberOfInputUnitsOptions() -> Int {
         return model.inputUnitsOptions.count
     }
@@ -45,22 +41,18 @@ extension ConverterController: ConverterSceneDataSource {
         }
         return model.inputUnitsOptions[index].name
     }
-
+    
     func numberOfOutputUnitsOptions() -> Int {
         return model.outputUnitsOptions.count
     }
-
+    
     func nameForOutputUnitsOptionsAtIndex(_ index: Int) -> String? {
         guard case 0 ..< model.outputUnitsOptions.count = index else {
             return nil
         }
         return model.outputUnitsOptions[index].name
     }
-
-}
-
-extension ConverterController: ConverterSceneDelegate {
-
+    
     private func updateOutputTextForScene(_ scene: ConverterScene) {
         guard let inputText = scene.inputText,
             let quantity = Double(inputText) else {
@@ -91,5 +83,5 @@ extension ConverterController: ConverterSceneDelegate {
     func converterSceneIngredientDidChange(_ scene: ConverterScene) {
         updateOutputTextForScene(scene)
     }
-    
+
 }
