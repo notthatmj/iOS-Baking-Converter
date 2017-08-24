@@ -64,17 +64,15 @@ extension ConverterViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
-        case ingredientsPicker:
-            controller.converterSceneIngredientDidChange(self)
-            break
         case inputUnitsPicker:
             controller.converterSceneInputUnitsDidChange(self)
         case outputUnitsPicker:
             controller.converterSceneOutputUnitsDidChange(self)
+        case ingredientsPicker:
+            controller.converterSceneIngredientDidChange(self)
         default:
             break
         }
-        return
     }
 }
 
