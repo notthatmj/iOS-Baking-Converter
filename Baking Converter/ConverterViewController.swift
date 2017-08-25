@@ -21,11 +21,12 @@ class ConverterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Configure results label with rounded corners
         resultsLabel.layer.cornerRadius = 8.0
         resultsLabel.layer.masksToBounds = true
         controller = ConverterController()
     }
-
+    
     @IBAction func textFieldEditingChangedAction(_ sender: Any) {
         controller.converterSceneInputTextDidChange(self)
     }

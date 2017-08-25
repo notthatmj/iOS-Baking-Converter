@@ -25,16 +25,17 @@ class ConverterController {
     var numberOfIngredients: Int { return model.ingredients.count }
     
     func nameForIngredientAtIndex(_ index: Int) -> String? {
-        guard case 0 ..< model.ingredients.count = index else {
+        guard 0 <= index && index < model.ingredients.count else {
             return nil
         }
+
         return model.ingredients[index].name
     }
     
     var numberOfInputUnitsOptions: Int { return model.inputUnitsOptions.count }
     
     func nameForInputUnitOptionAtIndex(_ index: Int) -> String? {
-        guard case 0 ..< model.inputUnitsOptions.count = index  else {
+        guard 0 <= index && index < model.inputUnitsOptions.count  else {
             return nil
         }
         return model.inputUnitsOptions[index].name
@@ -44,7 +45,7 @@ class ConverterController {
     
     
     func nameForOutputUnitsOptionsAtIndex(_ index: Int) -> String? {
-        guard case 0 ..< model.outputUnitsOptions.count = index else {
+        guard 0 <= index && index < model.outputUnitsOptions.count else {
             return nil
         }
         return model.outputUnitsOptions[index].name
