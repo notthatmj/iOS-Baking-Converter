@@ -64,9 +64,7 @@ struct MassUnit {
 }
 
 extension MassUnit: BakingUnit {
-    func convertQuantity(_ quantity: Double,
-                         of ingredient: Ingredient,
-                         to outUnit: BakingUnit) -> Double {
+    func convertQuantity(_ quantity: Double, of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
         return outUnit.convertQuantity(quantity, of: ingredient, from: self)
     }
     
@@ -93,11 +91,10 @@ fileprivate let defaultIngredients = [Ingredient(name: "Baking Powder", gramsPer
                                       Ingredient(name: "Sugar, Brown (packed)", gramsPerCup: 213.0),
                                       Ingredient(name: "Whole-wheat Flour", gramsPerCup: 113.0)]
 
-fileprivate let defaultInputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
-                                             VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
-
-fileprivate let defaultOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1.0),
-                                              MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
+fileprivate let defaultUnitsOptions: [BakingUnit] = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
+                                                      VolumeUnit(name:"ml", unitsPerCup: 236.588),
+                                                      MassUnit(name: "Grams", unitsPerGram: 1.0),
+                                                      MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
 
 class Model {
 
@@ -107,14 +104,8 @@ class Model {
     
     convenience init() {
         self.init(ingredients: defaultIngredients,
-                  inputUnitsOptions: [ VolumeUnit(name: "Cups", unitsPerCup: 1),
-                                       VolumeUnit(name:"ml", unitsPerCup: 236.588),
-                                       MassUnit(name: "Grams", unitsPerGram: 1.0),
-                                       MassUnit(name: "Ounces", unitsPerGram: 0.035274) ],
-                  outputUnitsOptions: [ VolumeUnit(name: "Cups", unitsPerCup: 1),
-                                        VolumeUnit(name:"ml", unitsPerCup: 236.588),
-                                        MassUnit(name: "Grams", unitsPerGram: 1.0),
-                                        MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]);
+                  inputUnitsOptions: defaultUnitsOptions,
+                  outputUnitsOptions: defaultUnitsOptions);
     }
     
     init(ingredients: [Ingredient],
