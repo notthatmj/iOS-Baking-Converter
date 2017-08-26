@@ -15,9 +15,7 @@ class FakeConverterScene: ConverterScene {
     var selectedIngredientIndex: Int = 0
     var selectedInputUnitsIndex: Int = 0
     var selectedOutputUnitsIndex: Int = 0
-    func converterScene(_ : ConverterScene, didSelectIngredientAtIndex: Int) {
-        
-    }
+    func converterScene(_ : ConverterScene, didSelectIngredientAtIndex: Int) { }
 }
 
 fileprivate let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
@@ -31,12 +29,11 @@ fileprivate let testInputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 
 fileprivate let testOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1),
                                            MassUnit(name: "Ounces", unitsPerGram: 0.035274)]
 
-class ConverterController_DataSourceMethods_Tests: XCTestCase {
+class ConverterControllerTests: XCTestCase {
 
     var SUT: ConverterController!
     
     override func setUp() {
-        
         SUT = ConverterController(ingredients: testIngredients,
                                   inputUnitsOptions: testInputUnitsOptions,
                                   outputUnitsOptions: testOutputUnitsOptions )
@@ -137,7 +134,7 @@ class ConverterController_DataSourceMethods_Tests: XCTestCase {
 
 }
 
-class ConverterController_DelegateMethodsUpdateOutput_Tests: XCTestCase {
+class ConverterController_OutputTextWasUpdated_Tests: XCTestCase {
     
     var SUT: ConverterController!
     let fakeScene = FakeConverterScene()
@@ -190,16 +187,17 @@ class ConverterController_DelegateMethodsUpdateOutput_Tests: XCTestCase {
 class ConverterController_Conversion_Tests: XCTestCase {
     
     var SUT: ConverterController!
+    var fakeScene: FakeConverterScene!
     
     override func setUp() {
         SUT = ConverterController(ingredients: testIngredients,
                                   inputUnitsOptions: testInputUnitsOptions,
                                   outputUnitsOptions: testOutputUnitsOptions )
+        fakeScene = FakeConverterScene()
     }
     
     func testConvert2CupsOfFlourToGrams() {
         // Setup
-        let fakeScene = FakeConverterScene()
         fakeScene.inputText = "2"
         
         // Run
@@ -211,7 +209,6 @@ class ConverterController_Conversion_Tests: XCTestCase {
     
     func testConvert1CupOfSugarToGrams() {
         // Setup
-        let fakeScene = FakeConverterScene()
         fakeScene.inputText = "1"
         fakeScene.selectedIngredientIndex = 2
         
@@ -224,7 +221,6 @@ class ConverterController_Conversion_Tests: XCTestCase {
     
     func testConvert3CupsOfSugarToGrams() {
         // Setup
-        let fakeScene = FakeConverterScene()
         fakeScene.inputText = "3"
         fakeScene.selectedIngredientIndex = 2
         
@@ -237,7 +233,6 @@ class ConverterController_Conversion_Tests: XCTestCase {
 
     func testConvertBadInputText() {
         // Setup
-        let fakeScene = FakeConverterScene()
         fakeScene.inputText = "2.."
         
         // Run
@@ -249,7 +244,6 @@ class ConverterController_Conversion_Tests: XCTestCase {
     
     func testConvert650mlCakeFlourToGrams() {
         // Setup
-        let fakeScene = FakeConverterScene()
         fakeScene.inputText = "650"
         fakeScene.selectedInputUnitsIndex = 1
         
@@ -262,7 +256,6 @@ class ConverterController_Conversion_Tests: XCTestCase {
     
     func test_Convert650mlCakeFlourToOunces() {
         // Setup
-        let fakeScene = FakeConverterScene()
         fakeScene.inputText = "650"
         fakeScene.selectedInputUnitsIndex = 1
         fakeScene.selectedOutputUnitsIndex = 1
