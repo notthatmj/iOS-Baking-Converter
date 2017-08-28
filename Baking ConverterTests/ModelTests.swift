@@ -11,32 +11,14 @@ import XCTest
 
 fileprivate let grams = MassUnit(name: "Grams", unitsPerGram: 1)
 fileprivate let kilograms = MassUnit(name: "Kilograms", unitsPerGram: 0.001);
-fileprivate let sugar = Ingredient(name: "Sugar", gramsPerCup: 198.0)
 fileprivate let ounces = MassUnit(name: "Ounces", unitsPerGram: 0.03527396195)
-fileprivate let milliliters = VolumeUnit(name:"ml", unitsPerCup: 236.588)
 fileprivate let cups = VolumeUnit(name: "Cups", unitsPerCup: 1)
-fileprivate let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
-                                      Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
-                                      sugar,
-                                      Ingredient(name: "Soylent", gramsPerCup: 321.0)]
-
-fileprivate let testInputUnitsOptions: [BakingUnit] = [ cups,
-                                                        milliliters,
-                                                        grams,
-                                                        ounces] // as [Any]
-
-fileprivate let testOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1),
-                               MassUnit(name: "Ounces", unitsPerGram: 0.035274)]
+fileprivate let milliliters = VolumeUnit(name:"ml", unitsPerCup: 236.588)
+fileprivate let sugar = Ingredient(name: "Sugar", gramsPerCup: 198.0)
 
 class ModelTests: XCTestCase {
     
-    let SUT = Model.init(ingredients: testIngredients,
-                         inputUnitsOptions: testInputUnitsOptions,
-                         outputUnitsOptions: testOutputUnitsOptions)
-    
-    override func setUp() {
-        super.setUp()
-    }
+    let SUT = Model()
     
     func test1GramsToOuncesConversion() {
         
