@@ -18,6 +18,10 @@ class FakeConverterScene: ConverterScene {
     func converterScene(_ : ConverterScene, didSelectIngredientAtIndex: Int) { }
 }
 
+class FakeSelectIngredientScene: SelectIngredientScene {
+    var model: Model! = nil
+}
+
 fileprivate let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
                                                   Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
                                                   Ingredient(name: "Sugar", gramsPerCup: 198.0),
@@ -132,6 +136,13 @@ class ConverterControllerTests: XCTestCase {
         XCTAssertNil(returnValue)
     }
 
+    func testPrepareScene() {
+        let fakeSelectIngredientScene = FakeSelectIngredientScene()
+        
+        SUT.prepareDestinationScene(fakeSelectIngredientScene)
+        
+        XCTAssert(SUT.model === fakeSelectIngredientScene.model)
+    }
 }
 
 class ConverterController_OutputTextWasUpdated_Tests: XCTestCase {

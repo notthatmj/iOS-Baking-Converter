@@ -10,7 +10,7 @@ import Foundation
 
 class ConverterController {
     
-    fileprivate var model: Model;
+    var model: Model;
     
     init() {
         model = Model()
@@ -81,5 +81,8 @@ class ConverterController {
     func converterSceneIngredientDidChange(_ scene: ConverterScene) {
         updateOutputTextForScene(scene)
     }
-
+    
+    func prepareDestinationScene(_ scene: SelectIngredientScene) {
+        scene.model = model
+    }
 }

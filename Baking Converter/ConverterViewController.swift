@@ -32,6 +32,11 @@ class ConverterViewController: UIViewController {
         controller.converterSceneInputTextDidChange(self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destinationScene = segue.destination as? SelectIngredientScene;
+//        controller.prepareScene(destinationScene)
+    }
+    
 }
 
 extension ConverterViewController: UIPickerViewDataSource {
