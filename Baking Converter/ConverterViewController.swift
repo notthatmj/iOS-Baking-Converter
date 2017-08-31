@@ -11,11 +11,11 @@ import Foundation
 
 class ConverterViewController: UIViewController {
 
-    @IBOutlet weak var ingredientsPicker: UIPickerView!
-    @IBOutlet weak var inputUnitsPicker: UIPickerView!
-    @IBOutlet weak var outputUnitsPicker: UIPickerView!
-    @IBOutlet weak var inputField: UITextField!
-    @IBOutlet weak var resultsLabel: UILabel!
+    @IBOutlet var ingredientsPicker: UIPickerView!
+    @IBOutlet var inputUnitsPicker: UIPickerView!
+    @IBOutlet var outputUnitsPicker: UIPickerView!
+    @IBOutlet var inputField: UITextField!
+    @IBOutlet var resultsLabel: UILabel!
     
     var controller: ConverterController!
     
@@ -44,8 +44,11 @@ extension ConverterViewController: UIPickerViewDataSource {
             return controller.numberOfInputUnitsOptions
         case outputUnitsPicker:
             return controller.numberOfOutputUnitsOptions
-        default:
+        case ingredientsPicker:
             return controller.numberOfIngredients
+        default:
+            // We should never reach this default case
+            return 0
         }
     }
 }
@@ -58,8 +61,11 @@ extension ConverterViewController: UIPickerViewDelegate {
             return controller.nameForInputUnitOptionAtIndex(row)
         case outputUnitsPicker:
             return controller.nameForOutputUnitsOptionsAtIndex(row)
-        default:
+        case ingredientsPicker:
             return controller.nameForIngredientAtIndex(row)
+        default:
+            // We should never reach this default case
+            return nil
         }
     }
     
@@ -72,7 +78,8 @@ extension ConverterViewController: UIPickerViewDelegate {
         case ingredientsPicker:
             controller.converterSceneIngredientDidChange(self)
         default:
-            break
+            // We should never reach this default case
+            return
         }
     }
 }
