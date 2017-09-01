@@ -20,5 +20,17 @@ class SelectIngredientViewController: UIViewController, UINavigationBarDelegate 
 }
 
 protocol SelectIngredientScene: class {
-    var model: Model! {get set}
+    var controller: SelectIngredientController! {get set}
+}
+
+extension SelectIngredientViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        controller.titleForCellAtIndex(indexPath.row)
+        return cell
+    }
 }

@@ -20,6 +20,7 @@ class FakeConverterScene: ConverterScene {
 
 class FakeSelectIngredientScene: SelectIngredientScene {
     var model: Model! = nil
+    var controller: SelectIngredientController! = nil
 }
 
 fileprivate let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
@@ -138,10 +139,11 @@ class ConverterControllerTests: XCTestCase {
 
     func testPrepareScene() {
         let fakeSelectIngredientScene = FakeSelectIngredientScene()
-        
+
         SUT.prepareDestinationScene(fakeSelectIngredientScene)
         
-        XCTAssert(SUT.model === fakeSelectIngredientScene.model)
+        XCTAssertNotNil(fakeSelectIngredientScene.controller)
+        XCTAssert(fakeSelectIngredientScene.controller.model === SUT.model)
     }
 }
 

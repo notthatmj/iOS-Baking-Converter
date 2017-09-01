@@ -43,7 +43,6 @@ class ConverterController {
 
     var numberOfOutputUnitsOptions: Int { return model.outputUnitsOptions.count }
     
-    
     func nameForOutputUnitsOptionsAtIndex(_ index: Int) -> String? {
         guard 0 <= index && index < model.outputUnitsOptions.count else {
             return nil
@@ -83,6 +82,6 @@ class ConverterController {
     }
     
     func prepareDestinationScene(_ scene: SelectIngredientScene) {
-        scene.model = model
+        scene.controller = SelectIngredientController(model: model)
     }
 }

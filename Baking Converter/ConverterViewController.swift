@@ -33,8 +33,10 @@ class ConverterViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationScene = segue.destination as? SelectIngredientScene;
-//        controller.prepareScene(destinationScene)
+        guard let destinationScene = segue.destination as? SelectIngredientScene else {
+            return
+        }
+        controller.prepareDestinationScene(destinationScene)
     }
     
 }
