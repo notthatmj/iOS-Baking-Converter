@@ -10,6 +10,8 @@ import UIKit
 
 class SelectIngredientViewController: UIViewController, UINavigationBarDelegate {
 
+    var controller: SelectIngredientController!
+    
     @IBAction func cancelButtonAction(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
@@ -23,14 +25,17 @@ protocol SelectIngredientScene: class {
     var controller: SelectIngredientController! {get set}
 }
 
+extension SelectIngredientViewController: SelectIngredientScene { }
+
 extension SelectIngredientViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return controller.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        controller.titleForCellAtIndex(indexPath.row)
+        let title = controller.titleForCellAtIndex(indexPath.row)
+        cell.textLabel?.text = title
         return cell
     }
 }

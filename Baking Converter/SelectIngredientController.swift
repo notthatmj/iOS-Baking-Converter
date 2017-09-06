@@ -14,4 +14,15 @@ class SelectIngredientController {
     init(model: Model) {
         self.model = model
     }
+    
+    func titleForCellAtIndex(_ index: Int) -> String {
+        guard 0 <= index && index < model.ingredients.count else {
+            return ""
+        }
+        return model.ingredients[index].name
+    }
+    
+    func numberOfRows() -> Int {
+        return model.ingredients.count
+    }
 }
