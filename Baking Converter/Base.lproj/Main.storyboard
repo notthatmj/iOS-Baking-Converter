@@ -128,6 +128,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="JCW-FP-V7p" id="hHZ-zu-7dc"/>
+                                    <outlet property="delegate" destination="JCW-FP-V7p" id="ifq-EX-mit"/>
                                 </connections>
                             </tableView>
                         </subviews>

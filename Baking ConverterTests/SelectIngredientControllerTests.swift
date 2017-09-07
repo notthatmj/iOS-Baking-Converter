@@ -52,5 +52,17 @@ class SelectIngredientControllerTests: XCTestCase {
         XCTAssertEqual(result, testIngredients.count)
     }
 
+    func testSelectIngredientAtIndex_WithIndex0() {
+        _ = SUT.selectIngredientAtIndex(0)
+        
+        XCTAssertEqual(model.selectedIngredientIndex, 0)
+    }
+
+    func testSelectIngredientAtIndex_WithIndex1() {
+        _ = SUT.selectIngredientAtIndex(1)
+        
+        XCTAssertEqual(model.selectedIngredientIndex, 1)
+    }
+
 }
 

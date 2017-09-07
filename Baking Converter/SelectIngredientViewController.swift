@@ -39,3 +39,10 @@ extension SelectIngredientViewController: UITableViewDataSource {
         return cell
     }
 }
+
+extension SelectIngredientViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        controller.selectIngredientAtIndex(indexPath.row)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+}

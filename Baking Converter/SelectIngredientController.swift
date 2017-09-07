@@ -25,4 +25,9 @@ class SelectIngredientController {
     func numberOfRows() -> Int {
         return model.ingredients.count
     }
+    
+    func selectIngredientAtIndex(_ index: Int) {
+        model.selectedIngredientIndex = index
+    }
+
 }

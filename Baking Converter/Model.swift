@@ -101,6 +101,7 @@ class Model {
     let ingredients: [Ingredient]
     let inputUnitsOptions: [BakingUnit]
     let outputUnitsOptions: [BakingUnit]
+    var selectedIngredientIndex = 0
     
     convenience init() {
         self.init(ingredients: defaultIngredients,
