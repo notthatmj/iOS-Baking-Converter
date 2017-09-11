@@ -136,6 +136,21 @@ class ConverterControllerTests: XCTestCase {
     }
 }
 
+class ConverterController_Init_Tests: XCTestCase {
+    
+    func testInitSetsModelObserver() {
+        let SUT = ConverterController(ingredients: testIngredients,
+                                      inputUnitsOptions: testInputUnitsOptions,
+                                      outputUnitsOptions: testOutputUnitsOptions )
+        XCTAssert(SUT.model.observer === SUT)
+    }
+    
+    func testInitWithoutArgumentsSetsModelObserver() {
+        let SUT = ConverterController()
+        XCTAssert(SUT.model.observer === SUT)
+    }
+}
+
 class ConverterController_OutputTextWasUpdated_Tests: XCTestCase {
     
     var SUT: ConverterController!

@@ -14,12 +14,14 @@ class ConverterController {
     
     init() {
         model = Model()
+        self.model.observer = self
     }
     
     init(ingredients: [Ingredient], inputUnitsOptions: [VolumeUnit], outputUnitsOptions: [MassUnit]) {
         self.model = Model(ingredients: ingredients,
                            inputUnitsOptions: inputUnitsOptions,
                            outputUnitsOptions: outputUnitsOptions )
+        self.model.observer = self
     }
     
     var numberOfIngredients: Int { return model.ingredients.count }
@@ -84,4 +86,8 @@ class ConverterController {
     func prepareDestinationScene(_ scene: SelectIngredientScene) {
         scene.controller = SelectIngredientController(model: model)
     }
+}
+
+extension ConverterController: ModelObserving {
+    func modelWasUpdated() { }
 }
