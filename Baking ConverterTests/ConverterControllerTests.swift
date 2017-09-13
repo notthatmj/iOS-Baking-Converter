@@ -199,8 +199,23 @@ class ConverterController_OutputTextWasUpdated_Tests: XCTestCase {
         // Assert
         AssertThatOutputTextWasUpdated()
     }
+    
 }
 
+
+//class ConverterControllerTestsIDontKnowHowToNameYet: XCTestCase {
+//    func testChangingModelIngredientUpdatesOutput() {
+//        // Setup
+//        let SUT = ConverterController(ingredients: testIngredients,
+//                                      inputUnitsOptions: testInputUnitsOptions,
+//                                      outputUnitsOptions: testOutputUnitsOptions )
+//        let fakeScene = FakeConverterScene()
+//        
+//        // Verify that
+//        
+//        
+//    }
+//}
 class ConverterController_Conversion_Tests: XCTestCase {
     
     var SUT: ConverterController!
@@ -239,10 +254,11 @@ class ConverterController_Conversion_Tests: XCTestCase {
     func testConvert3CupsOfSugarToGrams() {
         // Setup
         fakeScene.inputText = "3"
+        SUT.converterSceneInputTextDidChange(fakeScene)
         fakeScene.selectedIngredientIndex = 2
         
         // Run
-        SUT.converterSceneInputTextDidChange(fakeScene)
+        SUT.converterSceneIngredientDidChange(fakeScene)
         
         // Assert
         XCTAssertEqual(fakeScene.outputText, "594.0")
