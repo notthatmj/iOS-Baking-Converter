@@ -52,7 +52,7 @@ class ConverterController {
         return model.outputUnitsOptions[index].name
     }
     
-    private func updateOutputTextForScene(_ scene: ConverterScene) {
+    fileprivate func updateOutputTextForScene(_ scene: ConverterScene) {
         guard let inputText = scene.inputText,
             let quantity = Double(inputText) else {
                 scene.outputText = "0"
@@ -72,12 +72,12 @@ class ConverterController {
     }
     
     func converterSceneInputUnitsDidChange(_ scene: ConverterScene) {
-        model.selectInputUnitAtIndex(scene.selectedInputUnitsIndex)
+        model.selectInputUnitsAtIndex(scene.selectedInputUnitsIndex)
         updateOutputTextForScene(scene)
     }
     
     func converterSceneOutputUnitsDidChange(_ scene: ConverterScene) {
-        model.selectOutputUnitAtIndex(scene.selectedOutputUnitsIndex)
+        model.selectOutputUnitsAtIndex(scene.selectedOutputUnitsIndex)
         updateOutputTextForScene(scene)
     }
     

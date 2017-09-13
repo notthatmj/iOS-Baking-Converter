@@ -134,11 +134,11 @@ class Model {
         observer?.modelWasUpdated()
     }
     
-    func selectInputUnitAtIndex(_ index: Int) {
+    func selectInputUnitsAtIndex(_ index: Int) {
         selectedInputUnitIndex = index
     }
     
-    func selectOutputUnitAtIndex(_ index: Int) {
+    func selectOutputUnitsAtIndex(_ index: Int) {
         selectedOutputUnitIndex = index
     }
 }
