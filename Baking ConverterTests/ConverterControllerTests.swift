@@ -293,6 +293,7 @@ class ConverterController_Conversion_Tests: XCTestCase {
         fakeScene.selectedInputUnitsIndex = 1
         SUT.converterSceneInputUnitsDidChange(fakeScene)
         fakeScene.selectedOutputUnitsIndex = 1
+        SUT.converterSceneOutputUnitsDidChange(fakeScene)
         
         // Run
         SUT.converterSceneOutputUnitsDidChange(fakeScene)
