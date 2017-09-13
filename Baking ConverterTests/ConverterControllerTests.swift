@@ -45,10 +45,10 @@ class ConverterControllerTests: XCTestCase {
     var SUT: ConverterController!
     
     override func setUp() {
-        SUT = ConverterController(scene: nil,
-                                  ingredients: testIngredients,
-                                  inputUnitsOptions: testInputUnitsOptions,
-                                  outputUnitsOptions: testOutputUnitsOptions )
+        let model = Model(ingredients: testIngredients,
+                          inputUnitsOptions: testInputUnitsOptions,
+                          outputUnitsOptions: testOutputUnitsOptions)
+        SUT = ConverterController(scene: nil, model: model)
     }
     
     func testNameForIngredientAtIndex() {
@@ -157,13 +157,12 @@ class ConverterControllerTests: XCTestCase {
 class ConverterController_Init_Tests: XCTestCase {
     
     func testInitSetsModelObserver() {
-        let SUT = ConverterController(scene: nil,
-                                      ingredients: testIngredients,
-                                      inputUnitsOptions: testInputUnitsOptions,
-                                      outputUnitsOptions: testOutputUnitsOptions )
+        let model = Model(ingredients: testIngredients,
+        inputUnitsOptions: testInputUnitsOptions,
+        outputUnitsOptions: testOutputUnitsOptions)
+        let SUT = ConverterController(scene: nil, model: model)
         XCTAssert(SUT.model.observer === SUT)
     }
-    
 }
 
 class ConverterController_Conversion_Tests: XCTestCase {
@@ -173,10 +172,10 @@ class ConverterController_Conversion_Tests: XCTestCase {
     
     override func setUp() {
         fakeScene = FakeConverterScene()
-        SUT = ConverterController(scene: fakeScene,
-                                  ingredients: testIngredients,
-                                  inputUnitsOptions: testInputUnitsOptions,
-                                  outputUnitsOptions: testOutputUnitsOptions )
+        let model = Model(ingredients: testIngredients,
+                          inputUnitsOptions: testInputUnitsOptions,
+                          outputUnitsOptions: testOutputUnitsOptions)
+        SUT = ConverterController(scene: fakeScene, model: model)
         fakeScene.controller = SUT
     }
     

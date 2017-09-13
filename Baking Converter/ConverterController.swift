@@ -12,22 +12,15 @@ class ConverterController {
     
     var model: Model
     weak var scene: ConverterScene?
-    
-    init(scene: ConverterScene) {
-        model = Model()
-        self.scene = scene
-        self.model.observer = self
+
+    convenience init(scene: ConverterScene) {
+        self.init(scene: scene, model: Model())
     }
 
-    init(scene: ConverterScene?,
-         ingredients: [Ingredient],
-         inputUnitsOptions: [VolumeUnit],
-         outputUnitsOptions: [MassUnit]) {
-        self.model = Model(ingredients: ingredients,
-                           inputUnitsOptions: inputUnitsOptions,
-                           outputUnitsOptions: outputUnitsOptions )
-        self.scene = scene
+    init(scene: ConverterScene?, model: Model) {
+        self.model = model
         self.model.observer = self
+        self.scene = scene
     }
     
     var numberOfIngredients: Int { return model.ingredients.count }
