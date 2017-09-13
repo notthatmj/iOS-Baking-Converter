@@ -106,6 +106,7 @@ class Model {
     let inputUnitsOptions: [BakingUnit]
     let outputUnitsOptions: [BakingUnit]
     private(set) var selectedIngredientIndex = 0
+    private(set) var selectedInputUnitIndex = 0
     weak var observer: ModelObserving?
     
     convenience init() {
@@ -130,5 +131,9 @@ class Model {
     func selectIngredientAtIndex(_ index: Int) {
         selectedIngredientIndex = index
         observer?.modelWasUpdated()
+    }
+    
+    func selectInputUnitAtIndex(_ index: Int) {
+        selectedInputUnitIndex = index
     }
 }

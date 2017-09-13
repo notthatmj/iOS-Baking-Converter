@@ -291,6 +291,7 @@ class ConverterController_Conversion_Tests: XCTestCase {
         // Setup
         fakeScene.inputText = "650"
         fakeScene.selectedInputUnitsIndex = 1
+        SUT.converterSceneInputUnitsDidChange(fakeScene)
         fakeScene.selectedOutputUnitsIndex = 1
         
         // Run

@@ -59,9 +59,10 @@ class ConverterController {
                 return
         }
         
-        let selectedIngredient = model.ingredients[model.selectedIngredientIndex]
 //        let selectedIngredient = model.ingredients[scene.selectedIngredientIndex]
-        let selectedInputUnits = model.inputUnitsOptions[scene.selectedInputUnitsIndex]
+        let selectedIngredient = model.ingredients[model.selectedIngredientIndex]
+//        let selectedInputUnits = model.inputUnitsOptions[scene.selectedInputUnitsIndex]
+        let selectedInputUnits = model.inputUnitsOptions[model.selectedInputUnitIndex]
         let selectedOuputUnits = model.outputUnitsOptions[scene.selectedOutputUnitsIndex]
         
         let outputQuantity = model.convert(quantity, selectedInputUnits, of: selectedIngredient, to: selectedOuputUnits)
@@ -73,6 +74,7 @@ class ConverterController {
     }
     
     func converterSceneInputUnitsDidChange(_ scene: ConverterScene) {
+        model.selectInputUnitAtIndex(scene.selectedInputUnitsIndex)
         updateOutputTextForScene(scene)
     }
     
