@@ -53,7 +53,7 @@ class ConverterController {
     }
     
     fileprivate func updateOutputTextForScene(_ scene: ConverterScene) {
-        guard let inputText = scene.inputText,
+        guard let inputText = model.inputText,
             let quantity = Double(inputText) else {
                 scene.outputText = "0"
                 return
@@ -68,6 +68,7 @@ class ConverterController {
     }
     
     func converterSceneInputTextDidChange(_ scene: ConverterScene) {
+        model.inputText = scene.inputText
         updateOutputTextForScene(scene)
     }
     

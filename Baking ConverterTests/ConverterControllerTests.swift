@@ -162,6 +162,7 @@ class ConverterController_OutputTextWasUpdated_Tests: XCTestCase {
                                   inputUnitsOptions: testInputUnitsOptions,
                                   outputUnitsOptions: testOutputUnitsOptions )
         fakeScene.inputText = "1"
+        SUT.converterSceneInputTextDidChange(fakeScene)
     }
     
     private func AssertThatOutputTextWasUpdated(file: StaticString = #file, line: UInt = #line) {
@@ -231,6 +232,8 @@ class ConverterController_Conversion_Tests: XCTestCase {
     func testConvert2CupsOfFlourToGrams() {
         // Setup
         fakeScene.inputText = "2"
+        SUT.converterSceneInputTextDidChange(fakeScene)
+
         
         // Run
         SUT.converterSceneInputTextDidChange(fakeScene)
@@ -242,6 +245,7 @@ class ConverterController_Conversion_Tests: XCTestCase {
     func testConvert1CupOfSugarToGrams() {
         // Setup
         fakeScene.inputText = "1"
+        SUT.converterSceneInputTextDidChange(fakeScene)
         fakeScene.selectedIngredientIndex = 2
         
         // Run
@@ -278,6 +282,7 @@ class ConverterController_Conversion_Tests: XCTestCase {
     func testConvert650mlCakeFlourToGrams() {
         // Setup
         fakeScene.inputText = "650"
+        SUT.converterSceneInputTextDidChange(fakeScene)
         fakeScene.selectedInputUnitsIndex = 1
         
         // Run
@@ -290,6 +295,7 @@ class ConverterController_Conversion_Tests: XCTestCase {
     func test_Convert650mlCakeFlourToOunces() {
         // Setup
         fakeScene.inputText = "650"
+        SUT.converterSceneInputTextDidChange(fakeScene)
         fakeScene.selectedInputUnitsIndex = 1
         SUT.converterSceneInputUnitsDidChange(fakeScene)
         fakeScene.selectedOutputUnitsIndex = 1

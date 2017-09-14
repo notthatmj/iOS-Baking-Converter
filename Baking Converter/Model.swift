@@ -105,6 +105,8 @@ class Model {
     let ingredients: [Ingredient]
     let inputUnitsOptions: [BakingUnit]
     let outputUnitsOptions: [BakingUnit]
+    
+    var inputText: String? = nil;
     private(set) var selectedIngredientIndex = 0
     private(set) var selectedInputUnitIndex = 0
     private(set) var selectedOutputUnitIndex = 0
