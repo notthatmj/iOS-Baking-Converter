@@ -97,7 +97,6 @@ class ConverterController {
             return
         }
         model.selectInputUnitsAtIndex(selectedInputUnitsIndex)
-        updateOutputTextForScene()
     }
     
     func converterSceneOutputUnitsDidChange() {
@@ -105,7 +104,6 @@ class ConverterController {
             return
         }
         model.selectOutputUnitsAtIndex(selectedOutputUnitsIndex)
-        updateOutputTextForScene()
     }
     
     func converterSceneIngredientDidChange() {
@@ -113,7 +111,6 @@ class ConverterController {
             return
         }
         model.selectIngredientAtIndex(selectedIngredientIndex)
-        updateOutputTextForScene()
     }
     
     func prepareDestinationScene(_ scene: SelectIngredientScene) {
@@ -123,5 +120,6 @@ class ConverterController {
 
 extension ConverterController: ModelObserving {
     func modelWasUpdated() {
+        updateOutputTextForScene()
     }
 }
