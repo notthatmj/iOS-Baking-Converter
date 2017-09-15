@@ -25,11 +25,11 @@ class ConverterViewController: UIViewController {
         // Configure results label with rounded corners
         resultsLabel.layer.cornerRadius = 8.0
         resultsLabel.layer.masksToBounds = true
-        controller = ConverterController()
+        controller = ConverterController(scene: self)
     }
     
     @IBAction func textFieldEditingChangedAction(_ sender: Any) {
-        controller.converterSceneInputTextDidChange(self)
+        controller.converterSceneInputTextDidChange()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -80,11 +80,11 @@ extension ConverterViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case inputUnitsPicker:
-            controller.converterSceneInputUnitsDidChange(self)
+            controller.converterSceneInputUnitsDidChange()
         case outputUnitsPicker:
-            controller.converterSceneOutputUnitsDidChange(self)
+            controller.converterSceneOutputUnitsDidChange()
         case ingredientsPicker:
-            controller.converterSceneIngredientDidChange(self)
+            controller.converterSceneIngredientDidChange()
         default:
             // We should never reach this default case
             return

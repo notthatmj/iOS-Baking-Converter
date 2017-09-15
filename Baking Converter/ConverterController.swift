@@ -10,14 +10,34 @@ import Foundation
 
 class ConverterController {
     
-    var model: Model;
+    var model: Model
+    weak var scene: ConverterScene?
     
     init() {
         model = Model()
         self.model.observer = self
     }
-    
-    init(ingredients: [Ingredient], inputUnitsOptions: [VolumeUnit], outputUnitsOptions: [MassUnit]) {
+
+    init(scene: ConverterScene) {
+        model = Model()
+        self.model.observer = self
+        self.scene = scene
+    }
+
+    init(ingredients: [Ingredient],
+         inputUnitsOptions: [VolumeUnit],
+         outputUnitsOptions: [MassUnit]) {
+        self.model = Model(ingredients: ingredients,
+                           inputUnitsOptions: inputUnitsOptions,
+                           outputUnitsOptions: outputUnitsOptions )
+        self.model.observer = self
+    }
+
+    init(scene: ConverterScene,
+         ingredients: [Ingredient],
+         inputUnitsOptions: [VolumeUnit],
+         outputUnitsOptions: [MassUnit]) {
+        self.scene = scene
         self.model = Model(ingredients: ingredients,
                            inputUnitsOptions: inputUnitsOptions,
                            outputUnitsOptions: outputUnitsOptions )
@@ -52,10 +72,10 @@ class ConverterController {
         return model.outputUnitsOptions[index].name
     }
     
-    fileprivate func updateOutputTextForScene(_ scene: ConverterScene) {
+    fileprivate func updateOutputTextForScene() {
         guard let inputText = model.inputText,
             let quantity = Double(inputText) else {
-                scene.outputText = "0"
+                scene?.outputText = "0"
                 return
         }
         
@@ -64,27 +84,36 @@ class ConverterController {
         let selectedOuputUnits = model.outputUnitsOptions[model.selectedOutputUnitIndex]
         
         let outputQuantity = model.convert(quantity, selectedInputUnits, of: selectedIngredient, to: selectedOuputUnits)
-        scene.outputText = String(format: "%.1f", outputQuantity)
+        scene?.outputText = String(format: "%.1f", outputQuantity)
     }
     
-    func converterSceneInputTextDidChange(_ scene: ConverterScene) {
-        model.inputText = scene.inputText
-        updateOutputTextForScene(scene)
+    func converterSceneInputTextDidChange() {
+        model.inputText = scene?.inputText
+        updateOutputTextForScene()
     }
     
-    func converterSceneInputUnitsDidChange(_ scene: ConverterScene) {
-        model.selectInputUnitsAtIndex(scene.selectedInputUnitsIndex)
-        updateOutputTextForScene(scene)
+    func converterSceneInputUnitsDidChange() {
+        guard let selectedInputUnitsIndex = scene?.selectedInputUnitsIndex else {
+            return
+        }
+        model.selectInputUnitsAtIndex(selectedInputUnitsIndex)
+        updateOutputTextForScene()
     }
     
-    func converterSceneOutputUnitsDidChange(_ scene: ConverterScene) {
-        model.selectOutputUnitsAtIndex(scene.selectedOutputUnitsIndex)
-        updateOutputTextForScene(scene)
+    func converterSceneOutputUnitsDidChange() {
+        guard let selectedOutputUnitsIndex = scene?.selectedOutputUnitsIndex else {
+            return
+        }
+        model.selectOutputUnitsAtIndex(selectedOutputUnitsIndex)
+        updateOutputTextForScene()
     }
     
-    func converterSceneIngredientDidChange(_ scene: ConverterScene) {
-        model.selectIngredientAtIndex(scene.selectedIngredientIndex)
-        updateOutputTextForScene(scene)
+    func converterSceneIngredientDidChange() {
+        guard let selectedIngredientIndex = scene?.selectedIngredientIndex else {
+            return
+        }
+        model.selectIngredientAtIndex(selectedIngredientIndex)
+        updateOutputTextForScene()
     }
     
     func prepareDestinationScene(_ scene: SelectIngredientScene) {
@@ -93,5 +122,6 @@ class ConverterController {
 }
 
 extension ConverterController: ModelObserving {
-    func modelWasUpdated() { }
+    func modelWasUpdated() {
+    }
 }
