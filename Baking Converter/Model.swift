@@ -107,9 +107,22 @@ class Model {
     let outputUnitsOptions: [BakingUnit]
     
     var inputText: String? = nil;
-    private(set) var selectedIngredientIndex = 0
-    private(set) var selectedInputUnitIndex = 0
-    private(set) var selectedOutputUnitIndex = 0
+    var selectedIngredientIndex = 0 {
+        didSet {
+            observer?.modelWasUpdated()
+        }
+    }
+    var selectedInputUnitIndex = 0 {
+        didSet {
+            observer?.modelWasUpdated()
+        }
+    }
+    
+    var selectedOutputUnitIndex = 0 {
+        didSet {
+            observer?.modelWasUpdated()
+        }
+    }
     weak var observer: ModelObserving?
     
     convenience init() {
@@ -131,18 +144,15 @@ class Model {
         return inUnit.convertQuantity(quantity, of: ingredient, to: outUnit)
     }
     
-    func selectIngredientAtIndex(_ index: Int) {
-        selectedIngredientIndex = index
-        observer?.modelWasUpdated()
-    }
-    
-    func selectInputUnitsAtIndex(_ index: Int) {
-        selectedInputUnitIndex = index
-        observer?.modelWasUpdated()
-    }
-    
-    func selectOutputUnitsAtIndex(_ index: Int) {
-        selectedOutputUnitIndex = index
-        observer?.modelWasUpdated()
-    }
+//    func selectIngredientAtIndex(_ index: Int) {
+//        selectedIngredientIndex = index
+//    }
+//    
+//    func selectInputUnitsAtIndex(_ index: Int) {
+//        selectedInputUnitIndex = index
+//    }
+//    
+//    func selectOutputUnitsAtIndex(_ index: Int) {
+//        selectedOutputUnitIndex = index
+//    }
 }

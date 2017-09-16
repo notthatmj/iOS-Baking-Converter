@@ -70,7 +70,7 @@ class ModelTests: XCTestCase {
         let observer = TestModelObserver()
         SUT.observer = observer
         
-        SUT.selectIngredientAtIndex(1)
+        SUT.selectedIngredientIndex = 1
         
         XCTAssertEqual(observer.modelWasUpdatedCallCount, 1)
     }

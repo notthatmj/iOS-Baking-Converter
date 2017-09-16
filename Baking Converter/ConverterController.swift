@@ -96,21 +96,23 @@ class ConverterController {
         guard let selectedInputUnitsIndex = scene?.selectedInputUnitsIndex else {
             return
         }
-        model.selectInputUnitsAtIndex(selectedInputUnitsIndex)
+        model.selectedInputUnitIndex = selectedInputUnitsIndex
     }
     
     func converterSceneOutputUnitsDidChange() {
         guard let selectedOutputUnitsIndex = scene?.selectedOutputUnitsIndex else {
             return
         }
-        model.selectOutputUnitsAtIndex(selectedOutputUnitsIndex)
+//        model.selectOutputUnitsAtIndex(selectedOutputUnitsIndex)
+        model.selectedOutputUnitIndex = selectedOutputUnitsIndex
     }
     
     func converterSceneIngredientDidChange() {
         guard let selectedIngredientIndex = scene?.selectedIngredientIndex else {
             return
         }
-        model.selectIngredientAtIndex(selectedIngredientIndex)
+//        model.selectIngredientAtIndex(selectedIngredientIndex)
+        model.selectedIngredientIndex = selectedIngredientIndex
     }
     
     func prepareDestinationScene(_ scene: SelectIngredientScene) {

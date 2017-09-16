@@ -27,7 +27,7 @@ class SelectIngredientController {
     }
     
     func selectIngredientAtIndex(_ index: Int) {
-        model.selectIngredientAtIndex(index)
+        model.selectedIngredientIndex = index
     }
 
 }
