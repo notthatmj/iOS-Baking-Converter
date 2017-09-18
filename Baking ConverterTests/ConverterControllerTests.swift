@@ -72,7 +72,7 @@ class ConverterControllerTests: XCTestCase {
 
     func testNameForIngredientsAtIndex_ReturnsNilForNegativeIndex() {
         // Run
-        let returnValue = SUT.nameForIngredientAtIndex(testIngredients.count)
+        let returnValue = SUT.nameForIngredientAtIndex(-1)
         
         XCTAssertNil(returnValue)
     }
@@ -167,50 +167,6 @@ class ConverterController_Init_Tests: XCTestCase {
         XCTAssert(SUT.model.observer === SUT)
     }
 }
-
-class ConverterController_OutputTextWasUpdated_Tests: XCTestCase {
-    
-    var SUT: ConverterController!
-    let fakeScene = FakeConverterScene()
-    
-    override func setUp() {
-        SUT = ConverterController(scene: fakeScene,
-                                  ingredients: testIngredients,
-                                  inputUnitsOptions: testInputUnitsOptions,
-                                  outputUnitsOptions: testOutputUnitsOptions )
-        fakeScene.controller = SUT
-        fakeScene.inputText = "1"
-    }
-    
-    private func AssertThatOutputTextWasUpdated(file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(fakeScene.outputText, "120.0", file: file, line: line)
-    }
-    
-    func testConverterSceneInputTextDidChange() {
-        // Assert
-        AssertThatOutputTextWasUpdated()
-    }
-    
-    func testConverterSceneDidSelectIngredientAtIndex() {
-        // Assert
-        AssertThatOutputTextWasUpdated()
-    }
-    
-    func testInputUnitsDidChange() {
-        // Assert
-        AssertThatOutputTextWasUpdated()
-    }
-    
-    func testConverterSceneOutputUnitsDidChange() {
-        // Run
-        SUT.converterSceneOutputUnitsDidChange()
-        
-        // Assert
-        AssertThatOutputTextWasUpdated()
-    }
-    
-}
-
 
 class ConverterController_Conversion_Tests: XCTestCase {
     
