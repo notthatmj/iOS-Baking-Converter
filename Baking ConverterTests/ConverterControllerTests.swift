@@ -45,7 +45,8 @@ class ConverterControllerTests: XCTestCase {
     var SUT: ConverterController!
     
     override func setUp() {
-        SUT = ConverterController(ingredients: testIngredients,
+        SUT = ConverterController(scene: nil,
+                                  ingredients: testIngredients,
                                   inputUnitsOptions: testInputUnitsOptions,
                                   outputUnitsOptions: testOutputUnitsOptions )
     }
@@ -156,16 +157,13 @@ class ConverterControllerTests: XCTestCase {
 class ConverterController_Init_Tests: XCTestCase {
     
     func testInitSetsModelObserver() {
-        let SUT = ConverterController(ingredients: testIngredients,
+        let SUT = ConverterController(scene: nil,
+                                      ingredients: testIngredients,
                                       inputUnitsOptions: testInputUnitsOptions,
                                       outputUnitsOptions: testOutputUnitsOptions )
         XCTAssert(SUT.model.observer === SUT)
     }
     
-    func testInitWithoutArgumentsSetsModelObserver() {
-        let SUT = ConverterController()
-        XCTAssert(SUT.model.observer === SUT)
-    }
 }
 
 class ConverterController_Conversion_Tests: XCTestCase {

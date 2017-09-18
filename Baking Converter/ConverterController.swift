@@ -13,34 +13,20 @@ class ConverterController {
     var model: Model
     weak var scene: ConverterScene?
     
-    init() {
-        model = Model()
-        self.model.observer = self
-    }
-
     init(scene: ConverterScene) {
         model = Model()
-        self.model.observer = self
         self.scene = scene
-    }
-
-    init(ingredients: [Ingredient],
-         inputUnitsOptions: [VolumeUnit],
-         outputUnitsOptions: [MassUnit]) {
-        self.model = Model(ingredients: ingredients,
-                           inputUnitsOptions: inputUnitsOptions,
-                           outputUnitsOptions: outputUnitsOptions )
         self.model.observer = self
     }
 
-    init(scene: ConverterScene,
+    init(scene: ConverterScene?,
          ingredients: [Ingredient],
          inputUnitsOptions: [VolumeUnit],
          outputUnitsOptions: [MassUnit]) {
-        self.scene = scene
         self.model = Model(ingredients: ingredients,
                            inputUnitsOptions: inputUnitsOptions,
                            outputUnitsOptions: outputUnitsOptions )
+        self.scene = scene
         self.model.observer = self
     }
     
@@ -103,7 +89,6 @@ class ConverterController {
         guard let selectedOutputUnitsIndex = scene?.selectedOutputUnitsIndex else {
             return
         }
-//        model.selectOutputUnitsAtIndex(selectedOutputUnitsIndex)
         model.selectedOutputUnitIndex = selectedOutputUnitsIndex
     }
     
@@ -111,7 +96,6 @@ class ConverterController {
         guard let selectedIngredientIndex = scene?.selectedIngredientIndex else {
             return
         }
-//        model.selectIngredientAtIndex(selectedIngredientIndex)
         model.selectedIngredientIndex = selectedIngredientIndex
     }
     
