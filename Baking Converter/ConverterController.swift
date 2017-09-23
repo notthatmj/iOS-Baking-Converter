@@ -92,8 +92,8 @@ class ConverterController {
         model.selectedIngredientIndex = selectedIngredientIndex
     }
     
-    func prepareDestinationScene(_ scene: SelectIngredientScene) {
-        scene.controller = SelectIngredientController(model: model)
+    func prepareDestinationScene(_ destination: SelectIngredientScene) {
+        destination.controller = SelectIngredientController(model: model)
     }
 }
 
