@@ -14,6 +14,7 @@ class ConverterViewController: UIViewController {
     @IBOutlet var ingredientsPicker: UIPickerView!
     @IBOutlet var inputUnitsPicker: UIPickerView!
     @IBOutlet var outputUnitsPicker: UIPickerView!
+    @IBOutlet var ingredientButton: UIButton!
     @IBOutlet var inputField: UITextField!
     @IBOutlet var resultsLabel: UILabel!
     @IBOutlet var changeIngredientButton: UIButton!
@@ -95,6 +96,7 @@ extension ConverterViewController: UIPickerViewDelegate {
 protocol ConverterScene: class {
     var inputText: String? { get }
     var outputText: String? {get set}
+    var ingredientButtonText: String? {get set}
     var selectedIngredientIndex: Int { get }
     var selectedInputUnitsIndex: Int { get }
     var selectedOutputUnitsIndex: Int { get }
@@ -115,6 +117,14 @@ extension ConverterViewController: ConverterScene {
         }
     }
     
+    var ingredientButtonText: String? {
+        get {
+            return ingredientButton.currentTitle
+        }
+        set {
+            ingredientButton.setTitle(newValue, for: UIControlState.normal)
+        }
+    }
     var selectedIngredientIndex: Int {
         return ingredientsPicker.selectedRow(inComponent: 0)
     }

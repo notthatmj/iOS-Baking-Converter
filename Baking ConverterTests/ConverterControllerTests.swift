@@ -32,6 +32,7 @@ class FakeConverterScene: ConverterScene {
         }
     }
     var outputText: String? = nil
+    var ingredientButtonText: String? = nil
     func converterScene(_ : ConverterScene, didSelectIngredientAtIndex: Int) { }
 }
 
@@ -152,6 +153,7 @@ class ConverterControllerTests: XCTestCase {
         XCTAssertNotNil(fakeSelectIngredientScene.controller)
         XCTAssert(fakeSelectIngredientScene.controller.model === SUT.model)
     }
+    
 }
 
 class ConverterController_Init_Tests: XCTestCase {
@@ -230,5 +232,12 @@ class ConverterController_Conversion_Tests: XCTestCase {
         
         // Assert
         XCTAssertEqual(fakeScene.outputText, "11.6")
+    }
+
+    func testIngredientButtonTextWasUpdated() {
+        fakeScene.selectedIngredientIndex = 2
+        
+        XCTAssertEqual(fakeScene.ingredientButtonText, testIngredients[2].name)
+        
     }
 }

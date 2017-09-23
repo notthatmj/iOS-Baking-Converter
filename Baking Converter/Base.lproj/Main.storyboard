@@ -75,6 +75,7 @@
                     </view>
                     <connections>
                         <outlet property="changeIngredientButton" destination="bPn-sp-Cgs" id="Rmo-4h-QdJ"/>
+                        <outlet property="ingredientButton" destination="bPn-sp-Cgs" id="7cd-8y-vJ7"/>
                         <outlet property="ingredientsPicker" destination="iMr-iW-5j5" id="tOc-Ft-kQA"/>
                         <outlet property="inputField" destination="M6v-gC-W6b" id="hW3-bJ-wyH"/>
                         <outlet property="inputUnitsPicker" destination="ui4-kr-z59" id="l3s-L4-erZ"/>

@@ -52,18 +52,20 @@ class ConverterController {
     }
     
     fileprivate func updateOutputTextForScene() {
-        guard let inputText = model.inputText,
-            let quantity = Double(inputText) else {
+        let selectedIngredient = model.ingredients[model.selectedIngredientIndex]
+        let selectedInputUnits = model.inputUnitsOptions[model.selectedInputUnitIndex]
+        let selectedOuputUnits = model.outputUnitsOptions[model.selectedOutputUnitIndex]
+        scene?.ingredientButtonText = selectedIngredient.name
+
+        if let inputText = model.inputText,
+            let quantity = Double(inputText) {
+            let outputQuantity = model.convert(quantity, selectedInputUnits, of: selectedIngredient, to: selectedOuputUnits)
+            scene?.outputText = String(format: "%.1f", outputQuantity)
+        } else {
                 scene?.outputText = "0"
                 return
         }
         
-        let selectedIngredient = model.ingredients[model.selectedIngredientIndex]
-        let selectedInputUnits = model.inputUnitsOptions[model.selectedInputUnitIndex]
-        let selectedOuputUnits = model.outputUnitsOptions[model.selectedOutputUnitIndex]
-        
-        let outputQuantity = model.convert(quantity, selectedInputUnits, of: selectedIngredient, to: selectedOuputUnits)
-        scene?.outputText = String(format: "%.1f", outputQuantity)
     }
     
     func converterSceneInputTextDidChange() {
