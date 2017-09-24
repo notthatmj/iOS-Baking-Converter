@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		892057ED1EEC746400518F5B /* ConverterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892057EC1EEC746400518F5B /* ConverterController.swift */; };
 		892057EF1EEC777F00518F5B /* ConverterControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892057EE1EEC777F00518F5B /* ConverterControllerTests.swift */; };
+		892103FF1F58895100FB92FF /* SelectIngredientControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892103FE1F58895100FB92FF /* SelectIngredientControllerTests.swift */; };
+		892104011F588D1900FB92FF /* SelectIngredientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892104001F588D1900FB92FF /* SelectIngredientController.swift */; };
+		8964B5CA1F5B7B1B0045AA65 /* SharedTestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964B5C91F5B7B1B0045AA65 /* SharedTestConstants.swift */; };
 		89C781AB1EFC821000CCE01A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C781AA1EFC821000CCE01A /* Model.swift */; };
 		89DE1E8F1EEC63960072F9DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE1E8E1EEC63960072F9DC /* AppDelegate.swift */; };
 		89DE1E911EEC63960072F9DC /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE1E901EEC63960072F9DC /* ConverterViewController.swift */; };
 		89DE1E941EEC63960072F9DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89DE1E921EEC63960072F9DC /* Main.storyboard */; };
 		89DE1E961EEC63960072F9DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89DE1E951EEC63960072F9DC /* Assets.xcassets */; };
 		89DE1E991EEC63960072F9DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89DE1E971EEC63960072F9DC /* LaunchScreen.storyboard */; };
+		89E3A8621F4B7F2A009BD225 /* SelectIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E3A8611F4B7F2A009BD225 /* SelectIngredientViewController.swift */; };
 		89F7FE691EFDFAFE003F65D0 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7FE681EFDFAFE003F65D0 /* ModelTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +35,9 @@
 /* Begin PBXFileReference section */
 		892057EC1EEC746400518F5B /* ConverterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterController.swift; sourceTree = "<group>"; };
 		892057EE1EEC777F00518F5B /* ConverterControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterControllerTests.swift; sourceTree = "<group>"; };
+		892103FE1F58895100FB92FF /* SelectIngredientControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientControllerTests.swift; sourceTree = "<group>"; };
+		892104001F588D1900FB92FF /* SelectIngredientController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientController.swift; sourceTree = "<group>"; };
+		8964B5C91F5B7B1B0045AA65 /* SharedTestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTestConstants.swift; sourceTree = "<group>"; };
 		89C781AA1EFC821000CCE01A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		89DE1E8B1EEC63960072F9DC /* Baking Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Baking Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DE1E8E1EEC63960072F9DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +48,7 @@
 		89DE1E9A1EEC63960072F9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89DE1E9F1EEC63970072F9DC /* Baking ConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baking ConverterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DE1EA51EEC63970072F9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89E3A8611F4B7F2A009BD225 /* SelectIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientViewController.swift; sourceTree = "<group>"; };
 		89F7FE681EFDFAFE003F65D0 /* ModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +94,8 @@
 				89DE1E8E1EEC63960072F9DC /* AppDelegate.swift */,
 				89DE1E901EEC63960072F9DC /* ConverterViewController.swift */,
 				892057EC1EEC746400518F5B /* ConverterController.swift */,
+				89E3A8611F4B7F2A009BD225 /* SelectIngredientViewController.swift */,
+				892104001F588D1900FB92FF /* SelectIngredientController.swift */,
 				89C781AA1EFC821000CCE01A /* Model.swift */,
 				89DE1E921EEC63960072F9DC /* Main.storyboard */,
 				89DE1E951EEC63960072F9DC /* Assets.xcassets */,
@@ -98,7 +108,9 @@
 		89DE1EA21EEC63970072F9DC /* Baking ConverterTests */ = {
 			isa = PBXGroup;
 			children = (
+				8964B5C91F5B7B1B0045AA65 /* SharedTestConstants.swift */,
 				892057EE1EEC777F00518F5B /* ConverterControllerTests.swift */,
+				892103FE1F58895100FB92FF /* SelectIngredientControllerTests.swift */,
 				89F7FE681EFDFAFE003F65D0 /* ModelTests.swift */,
 				89DE1EA51EEC63970072F9DC /* Info.plist */,
 			);
@@ -210,8 +222,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89E3A8621F4B7F2A009BD225 /* SelectIngredientViewController.swift in Sources */,
 				89DE1E911EEC63960072F9DC /* ConverterViewController.swift in Sources */,
 				89DE1E8F1EEC63960072F9DC /* AppDelegate.swift in Sources */,
+				892104011F588D1900FB92FF /* SelectIngredientController.swift in Sources */,
 				892057ED1EEC746400518F5B /* ConverterController.swift in Sources */,
 				89C781AB1EFC821000CCE01A /* Model.swift in Sources */,
 			);
@@ -222,7 +236,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				892057EF1EEC777F00518F5B /* ConverterControllerTests.swift in Sources */,
+				8964B5CA1F5B7B1B0045AA65 /* SharedTestConstants.swift in Sources */,
 				89F7FE691EFDFAFE003F65D0 /* ModelTests.swift in Sources */,
+				892103FF1F58895100FB92FF /* SelectIngredientControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

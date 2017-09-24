@@ -16,6 +16,14 @@ fileprivate let cups = VolumeUnit(name: "Cups", unitsPerCup: 1)
 fileprivate let milliliters = VolumeUnit(name:"ml", unitsPerCup: 236.58824)
 fileprivate let sugar = Ingredient(name: "Sugar", gramsPerCup: 198.0)
 
+class TestModelObserver: ModelObserving {
+    var modelWasUpdatedCallCount = 0
+    
+    func modelWasUpdated() {
+        modelWasUpdatedCallCount += 1
+    }
+}
+
 class ModelTests: XCTestCase {
     
     let SUT = Model()
@@ -56,5 +64,14 @@ class ModelTests: XCTestCase {
         
         let expectedResult = 101.62370
         XCTAssertEqualWithAccuracy(result, expectedResult, accuracy: expectedAccuracy)
+    }
+    
+    func testObserverIsNotifiedWhenSelectedIngredientChanges() {
+        let observer = TestModelObserver()
+        SUT.observer = observer
+        
+        SUT.selectedIngredientIndex = 1
+        
+        XCTAssertEqual(observer.modelWasUpdatedCallCount, 1)
     }
 }

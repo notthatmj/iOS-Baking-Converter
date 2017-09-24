@@ -10,33 +10,46 @@ import XCTest
 @testable import Baking_Converter
 
 class FakeConverterScene: ConverterScene {
-    var inputText: String? = nil
+    var controller: ConverterController? = nil
+    var inputText: String? = nil {
+        didSet {
+            controller?.converterSceneInputTextDidChange()
+        }
+    }
+    var selectedIngredientIndex: Int = 0 {
+        didSet {
+            controller?.converterSceneIngredientDidChange()
+        }
+    }
+    var selectedInputUnitsIndex: Int = 0 {
+        didSet {
+            controller?.converterSceneInputUnitsDidChange()
+        }
+    }
+    var selectedOutputUnitsIndex: Int = 0 {
+        didSet {
+            controller?.converterSceneOutputUnitsDidChange()
+        }
+    }
     var outputText: String? = nil
-    var selectedIngredientIndex: Int = 0
-    var selectedInputUnitsIndex: Int = 0
-    var selectedOutputUnitsIndex: Int = 0
+    var ingredientButtonText: String? = nil
     func converterScene(_ : ConverterScene, didSelectIngredientAtIndex: Int) { }
 }
 
-fileprivate let testIngredients: [Ingredient] = [ Ingredient(name: "All-Purpose Flour", gramsPerCup: 120.0),
-                                                  Ingredient(name: "Cake Flour", gramsPerCup: 120.0),
-                                                  Ingredient(name: "Sugar", gramsPerCup: 198.0),
-                                                  Ingredient(name: "Soylent", gramsPerCup: 321.0)]
-
-fileprivate let testInputUnitsOptions = [ VolumeUnit(name: "Cups", unitsPerCup: 1),
-                                          VolumeUnit(name:"ml", unitsPerCup: 236.588) ]
-
-fileprivate let testOutputUnitsOptions = [ MassUnit(name: "Grams", unitsPerGram: 1),
-                                           MassUnit(name: "Ounces", unitsPerGram: 0.035274)]
+class FakeSelectIngredientScene: SelectIngredientScene {
+    var model: Model! = nil
+    var controller: SelectIngredientController! = nil
+}
 
 class ConverterControllerTests: XCTestCase {
 
     var SUT: ConverterController!
     
     override func setUp() {
-        SUT = ConverterController(ingredients: testIngredients,
-                                  inputUnitsOptions: testInputUnitsOptions,
-                                  outputUnitsOptions: testOutputUnitsOptions )
+        let model = Model(ingredients: testIngredients,
+                          inputUnitsOptions: testInputUnitsOptions,
+                          outputUnitsOptions: testOutputUnitsOptions)
+        SUT = ConverterController(scene: nil, model: model)
     }
     
     func testNameForIngredientAtIndex() {
@@ -61,7 +74,7 @@ class ConverterControllerTests: XCTestCase {
 
     func testNameForIngredientsAtIndex_ReturnsNilForNegativeIndex() {
         // Run
-        let returnValue = SUT.nameForIngredientAtIndex(testIngredients.count)
+        let returnValue = SUT.nameForIngredientAtIndex(-1)
         
         XCTAssertNil(returnValue)
     }
@@ -128,59 +141,29 @@ class ConverterControllerTests: XCTestCase {
         // Run
         let returnValue = SUT.nameForOutputUnitsOptionsAtIndex(testOutputUnitsOptions.count)
         
-        // Assert
+        // Assertt
         XCTAssertNil(returnValue)
     }
 
+    func testPrepareScene() {
+        let fakeSelectIngredientScene = FakeSelectIngredientScene()
+
+        SUT.prepareDestinationScene(fakeSelectIngredientScene)
+        
+        XCTAssertNotNil(fakeSelectIngredientScene.controller)
+        XCTAssert(fakeSelectIngredientScene.controller.model === SUT.model)
+    }
+    
 }
 
-class ConverterController_OutputTextWasUpdated_Tests: XCTestCase {
+class ConverterController_Init_Tests: XCTestCase {
     
-    var SUT: ConverterController!
-    let fakeScene = FakeConverterScene()
-    
-    override func setUp() {
-        
-        SUT = ConverterController(ingredients: testIngredients,
-                                  inputUnitsOptions: testInputUnitsOptions,
-                                  outputUnitsOptions: testOutputUnitsOptions )
-        fakeScene.inputText = "1"
-    }
-    
-    private func AssertThatOutputTextWasUpdated(file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(fakeScene.outputText, "120.0", file: file, line: line)
-    }
-    
-    func testConverterSceneInputTextDidChange() {
-        // Run
-        SUT.converterSceneInputTextDidChange(fakeScene)
-        
-        // Assert
-        AssertThatOutputTextWasUpdated()
-    }
-    
-    func testConverterSceneDidSelectIngredientAtIndex() {
-        // Run
-        SUT.converterSceneIngredientDidChange(fakeScene);
-        
-        // Assert
-        AssertThatOutputTextWasUpdated()
-    }
-    
-    func testInputUnitsDidChange() {
-        // Run
-        SUT.converterSceneInputUnitsDidChange(fakeScene)
-        
-        // Assert
-        AssertThatOutputTextWasUpdated()
-    }
-    
-    func testConverterSceneOutputUnitsDidChange() {
-        // Run
-        SUT.converterSceneOutputUnitsDidChange(fakeScene)
-        
-        // Assert
-        AssertThatOutputTextWasUpdated()
+    func testInitSetsModelObserver() {
+        let model = Model(ingredients: testIngredients,
+        inputUnitsOptions: testInputUnitsOptions,
+        outputUnitsOptions: testOutputUnitsOptions)
+        let SUT = ConverterController(scene: nil, model: model)
+        XCTAssert(SUT.model.observer === SUT)
     }
 }
 
@@ -190,18 +173,17 @@ class ConverterController_Conversion_Tests: XCTestCase {
     var fakeScene: FakeConverterScene!
     
     override func setUp() {
-        SUT = ConverterController(ingredients: testIngredients,
-                                  inputUnitsOptions: testInputUnitsOptions,
-                                  outputUnitsOptions: testOutputUnitsOptions )
         fakeScene = FakeConverterScene()
+        let model = Model(ingredients: testIngredients,
+                          inputUnitsOptions: testInputUnitsOptions,
+                          outputUnitsOptions: testOutputUnitsOptions)
+        SUT = ConverterController(scene: fakeScene, model: model)
+        fakeScene.controller = SUT
     }
     
     func testConvert2CupsOfFlourToGrams() {
-        // Setup
-        fakeScene.inputText = "2"
-        
         // Run
-        SUT.converterSceneInputTextDidChange(fakeScene)
+        fakeScene.inputText = "2"
         
         // Assert
         XCTAssertEqual(fakeScene.outputText, "240.0")
@@ -212,9 +194,6 @@ class ConverterController_Conversion_Tests: XCTestCase {
         fakeScene.inputText = "1"
         fakeScene.selectedIngredientIndex = 2
         
-        // Run
-        SUT.converterSceneIngredientDidChange(fakeScene)
-        
         // Assert
         XCTAssertEqual(fakeScene.outputText, "198.0")
     }
@@ -223,47 +202,42 @@ class ConverterController_Conversion_Tests: XCTestCase {
         // Setup
         fakeScene.inputText = "3"
         fakeScene.selectedIngredientIndex = 2
-        
-        // Run
-        SUT.converterSceneInputTextDidChange(fakeScene)
-        
+
         // Assert
         XCTAssertEqual(fakeScene.outputText, "594.0")
     }
 
     func testConvertBadInputText() {
-        // Setup
-        fakeScene.inputText = "2.."
-        
         // Run
-        SUT.converterSceneInputTextDidChange(fakeScene)
+        fakeScene.inputText = "2.."
         
         // Assert
         XCTAssertEqual(fakeScene.outputText, "0")
     }
     
     func testConvert650mlCakeFlourToGrams() {
-        // Setup
+        // Run
         fakeScene.inputText = "650"
         fakeScene.selectedInputUnitsIndex = 1
-        
-        // Run
-        SUT.converterSceneInputUnitsDidChange(fakeScene)
         
         // Assert
         XCTAssertEqual(fakeScene.outputText, "329.7")
     }
     
     func test_Convert650mlCakeFlourToOunces() {
-        // Setup
+        // Run
         fakeScene.inputText = "650"
         fakeScene.selectedInputUnitsIndex = 1
         fakeScene.selectedOutputUnitsIndex = 1
         
-        // Run
-        SUT.converterSceneOutputUnitsDidChange(fakeScene)
-        
         // Assert
         XCTAssertEqual(fakeScene.outputText, "11.6")
+    }
+
+    func testIngredientButtonTextWasUpdated() {
+        fakeScene.selectedIngredientIndex = 2
+        
+        XCTAssertEqual(fakeScene.ingredientButtonText, testIngredients[2].name)
+        
     }
 }

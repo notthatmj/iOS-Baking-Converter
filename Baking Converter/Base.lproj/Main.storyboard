@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,14 +20,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iMr-iW-5j5">
-                                <rect key="frame" x="0.0" y="28" width="375" height="124"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="5xr-bs-7Qg"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="opD-TK-r9r"/>
-                                </connections>
-                            </pickerView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M6v-gC-W6b">
                                 <rect key="frame" x="16" y="227" width="141" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -63,11 +54,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPn-sp-Cgs">
+                                <rect key="frame" x="16" y="28" width="343" height="159"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Change Ingredient"/>
+                                <connections>
+                                    <segue destination="JCW-FP-V7p" kind="presentation" id="MBF-lx-vjV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.73986677550000002" green="1" blue="0.73399531760000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="ingredientsPicker" destination="iMr-iW-5j5" id="tOc-Ft-kQA"/>
+                        <outlet property="changeIngredientButton" destination="bPn-sp-Cgs" id="Rmo-4h-QdJ"/>
+                        <outlet property="ingredientButton" destination="bPn-sp-Cgs" id="7cd-8y-vJ7"/>
                         <outlet property="inputField" destination="M6v-gC-W6b" id="hW3-bJ-wyH"/>
                         <outlet property="inputUnitsPicker" destination="ui4-kr-z59" id="l3s-L4-erZ"/>
                         <outlet property="outputUnitsPicker" destination="lUc-hV-UVv" id="nWO-bL-5fN"/>
@@ -77,6 +78,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--Select Ingredient View Controller-->
+        <scene sceneID="Amb-9P-lI2">
+            <objects>
+                <viewController id="JCW-FP-V7p" customClass="SelectIngredientViewController" customModule="Baking_Converter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jeu-th-jAp"/>
+                        <viewControllerLayoutGuide type="bottom" id="0hH-wK-kn5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AX3-Fb-Xdm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wni-SH-usj">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Ingredients" id="naV-W6-MJI">
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="DVG-at-pkq">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="JCW-FP-V7p" id="IRR-Ex-FsN"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="JCW-FP-V7p" id="ktr-oD-uxI"/>
+                                </connections>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cch-X7-OiM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="qce-mA-4Oq">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qce-mA-4Oq" id="0oP-Il-pza">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="JCW-FP-V7p" id="hHZ-zu-7dc"/>
+                                    <outlet property="delegate" destination="JCW-FP-V7p" id="ifq-EX-mit"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cch-X7-OiM" firstAttribute="top" secondItem="Wni-SH-usj" secondAttribute="bottom" id="6pc-TO-JpG"/>
+                            <constraint firstAttribute="leading" secondItem="cch-X7-OiM" secondAttribute="leading" id="CfZ-sp-SUE"/>
+                            <constraint firstAttribute="trailing" secondItem="cch-X7-OiM" secondAttribute="trailing" id="O4l-YS-ETL"/>
+                            <constraint firstItem="0hH-wK-kn5" firstAttribute="top" secondItem="cch-X7-OiM" secondAttribute="bottom" id="UYO-Rq-F0g"/>
+                            <constraint firstItem="Wni-SH-usj" firstAttribute="leading" secondItem="AX3-Fb-Xdm" secondAttribute="leading" id="UoN-OM-eMY"/>
+                            <constraint firstItem="Wni-SH-usj" firstAttribute="top" secondItem="jeu-th-jAp" secondAttribute="bottom" id="acL-h5-O97"/>
+                            <constraint firstAttribute="trailing" secondItem="Wni-SH-usj" secondAttribute="trailing" id="gWF-8s-3pR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6S1-Vq-YAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1040.8" y="138.98050974512745"/>
         </scene>
     </scenes>
 </document>

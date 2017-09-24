@@ -96,11 +96,34 @@ fileprivate let defaultUnitsOptions: [BakingUnit] = [ VolumeUnit(name: "Cups", u
                                                       MassUnit(name: "Grams", unitsPerGram: 1.0),
                                                       MassUnit(name: "Ounces", unitsPerGram: 0.035274) ]
 
+protocol ModelObserving: class {
+    func modelWasUpdated()
+}
+
 class Model {
 
     let ingredients: [Ingredient]
     let inputUnitsOptions: [BakingUnit]
     let outputUnitsOptions: [BakingUnit]
+    
+    var inputText: String? = nil;
+    var selectedIngredientIndex = 0 {
+        didSet {
+            observer?.modelWasUpdated()
+        }
+    }
+    var selectedInputUnitIndex = 0 {
+        didSet {
+            observer?.modelWasUpdated()
+        }
+    }
+    
+    var selectedOutputUnitIndex = 0 {
+        didSet {
+            observer?.modelWasUpdated()
+        }
+    }
+    weak var observer: ModelObserving?
     
     convenience init() {
         self.init(ingredients: defaultIngredients,
@@ -120,4 +143,16 @@ class Model {
                  of ingredient: Ingredient, to outUnit: BakingUnit) -> Double {
         return inUnit.convertQuantity(quantity, of: ingredient, to: outUnit)
     }
+    
+//    func selectIngredientAtIndex(_ index: Int) {
+//        selectedIngredientIndex = index
+//    }
+//    
+//    func selectInputUnitsAtIndex(_ index: Int) {
+//        selectedInputUnitIndex = index
+//    }
+//    
+//    func selectOutputUnitsAtIndex(_ index: Int) {
+//        selectedOutputUnitIndex = index
+//    }
 }
